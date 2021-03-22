@@ -35,7 +35,7 @@ En caso contrario puedes optar por descargarte el binario ya compilado, lo únic
 <p>La primera utilidad va a ser algo sencillo con poca utilidad práctica, pero que nos sirva para entender como trabajar con los parámetros, así como otras utilidades en cada entorno (utilizando un método simple sin depencencias ni módulos externos) y a escribir código portable que funcione entre ambos entornos. Vamos a escribir un programa que acepte texto y nos diga cuantas letras, numeros y caracteres tiene. Utilizaremos 3 parámetros distintos para indicarle al programa que resultado queremos que nos muestre y otro parámetro para indicarle el archivo en el que se encuentra el texto.</p>
 
 <h3>Haciendo código compatible</h3>
-<p>Quickjs usa imports especiales con strings internos. En concreto tiene 2 módulos de este tipo, el módulo std, y el módulo os. Estos se deben importar al inicio del archivo antes que nada y su sintaxis es tal que <code class="javascript">import * as std from "std";</code>. Tratar de correr un script con este tipo de import sin ruta ni extensión causaría una excepción en node. Para circunventar este problema se puede omitir estos imports utilizando el argumento --std. Para evitar tener que escribir este argumento puedes crear un alias. En caso de bash y linux, lo puedes hacer con el siguiente comando <mark id="markCommand"> echo alias qjs="'"qjs --std "'" >> ~/.bashrc </mark>. En caso de windows para creat el alias puedes renombrar el binario de quickjs que añadiste anteriormente en C:\Windows\Sys y crear tu batch llamado qjs en el cual llames al qjs original con el argumento --std.
+<p>Quickjs usa imports especiales con strings internos. En concreto tiene 2 módulos de este tipo, el módulo std, y el módulo os. Estos se deben importar al inicio del archivo antes que nada y su sintaxis es tal que <code class="inline">import * as std from "std";</code>. Tratar de correr un script con este tipo de import sin ruta ni extensión causaría una excepción en node. Para circunventar este problema se puede omitir estos imports utilizando el argumento --std. Para evitar tener que escribir este argumento puedes crear un alias. En caso de bash y linux, lo puedes hacer con el siguiente comando <mark id="markCommand"> echo alias qjs="'"qjs --std "'" >> ~/.bashrc </mark>. En caso de windows para creat el alias puedes renombrar el binario de quickjs que añadiste anteriormente en C:\Windows\Sys y crear tu batch llamado qjs en el cual llames al qjs original con el argumento --std.
 También utilizaremos código para simplificar la detección de si el script corre en node o quickjs. <code class="javascript">let isQjs = false;
 try {
   isQjs = std ? true : false;
@@ -46,12 +46,19 @@ try {
   args: isQjs ? scriptArgs : process.argv.splice(1)
 };</code>
 Como vamos a cargar el texto al programa leyéndolo de un archivo, debemos unificar también la forma de abrir abrir archivos. Node utiliza el nódulo fs, mientras que quickjs utiliza el módulo std. <code class="javascript">let loadFile;
-if (isQjs) {                                                             loadFile = std.loadFile;
+if (isQjs) {
+  loadFile = std.loadFile;
 } else {
   const fs = require("fs");
-  loadFile = filename => {                                                 try {
+  loadFile = filename => {
+    try {
       filename = fs.readFileSync(filename, { encoding: "utf-8" })
-    } catch(e) {                                                             filename = null;                                                     }                                                                      return filename;                                                     };                                                                   }</code></p>
+    } catch(e) {
+      filename = null;
+    }
+    return filename;
+  };
+}</code></p>
 
 <p>Utilizaremos también el objeto cli para guardar nuestros argumentos con un switch: <code class="javascript">for (let i in cli.args) {
   switch(cli.args[i]) {
@@ -75,7 +82,13 @@ if (isQjs) {                                                             loadFil
     case "--number":
     case "--numbers":
       cli.number = true;
-    break;                                                                                                                                        case "-s":                                                             case "--simbol":                                                       case "--simbols":                                                        cli.simbol = true;                                                   break;
+    break;
+
+    case "-s":
+    case "--simbol":
+    case "--simbols":
+      cli.simbol = true;
+    break;
 
     case "-t":
     case "--total":
@@ -87,32 +100,42 @@ if (isQjs) {                                                             loadFil
 <p>Por último añadimos que hacer en caso de que se encontrase cada argumento. <code class="javascript">(() => {
   if (cli.help) {
     console.log(`usage [engine] charcounter.js [arguments]
-                                                                       engine:
+
+engine:
 + qjs --std
 + node
+
 arguments:
 + -f, --file      File name (path) of the file you want to load
 + -h, --help      This message
 + -l, --letters   Output how many letters the file has
-+ -n, --numbers   Output how many numbers the file has                 + -s, --simbols   Output how many simbols the file has
++ -n, --numbers   Output how many numbers the file has
++ -s, --simbols   Output how many simbols the file has
 + -t, --total     shows how many characters the file has
 
 Letters: a to Z
 Numbers: 0 to 9
-Simbols: Anything else.                                                Characters: Total.
-`);                                                                        return;
-  } else if (!!!cli.file) {                                                console.log("Error: MISSING ARGUMENT -f\nArgument is mandatory.");     return;
+Simbols: Anything else.
+Characters: Total.
+`);
+    return;
+  } else if (!!!cli.file) {
+    console.log("Error: MISSING ARGUMENT -f\nArgument is mandatory.");
+    return;
   } else {
     if (cli.letter)
       console.log(cli.file.match(/[a-zA-Z]/g).length);
 
-    if (cli.number)                                                          console.log(cli.file.match(/[0-9]/g).length);
+    if (cli.number)
+      console.log(cli.file.match(/[0-9]/g).length);
 
-    if (cli.simbol)                                                          console.log(cli.file.match(/[^A-Za-z0-9]/g).length);
+    if (cli.simbol)
+      console.log(cli.file.match(/[^A-Za-z0-9]/g).length);
 
     if (cli.total)
       console.log(cli.file.length);
-  }                                                                    })();</code></p>
+  }
+})();</code></p>
 
 <h3>Conclusiones</h3>
 <p>Al archivo con el código lo llamo charcounter.js, y funciona tanto en node como en qjs. Si miramos el tiempo que tarda el script con cada motor, podremos apreciar una diferencia muy significante: <code class="output">$ time qjs charcounter.js -f charcounter.js -l -n -s -t
@@ -152,6 +175,20 @@ code {
   font-family: "Courier New", monospace;
   white-space: pre;
   overflow: auto;
+  margin-bottom: 8px;
+  padding: 3px;
+  background-color: #ff7357;
+  color: #000;
+  text-shadow: -1px 1px 0 0 hsl(20, 100%, 16%),
+    -2px 2px 0 0 hsl(20, 100%, 16%),
+    -3px 3px 0 0 hsl(20, 100%, 16%),
+    -4px 4px 0 0 hsl(20, 100%, 16%),
+    -5px 5px 0 0 hsl(20, 100%, 16%),
+    -6px 6px 0 0 hsl(20, 100%, 16%);
+}
+
+code .inline {
+  display: inline;
 }
 
 code .output {

@@ -1,0 +1,159 @@
+<h1>Node y Quickjs para aplicaciones CLI</h1>
+<p>Node y Quickjs son 2 de los entornos de ejecución más populares para correr nuestro código javascript. En este artículo explico como programar código portable entre ambos entornos y cual te beneficia utilizar para según el tipo de programa que desarrolles sin dejar de perder las posibilidades de correrlo en el otro entorno.</p>
+
+<h2>Vision General</h2>
+<h3>Node</h3>
+<p>Node.js es un proyecto de código abierto que permite ejecutar códigojavascript fuera del navegador. Es ampliamente utilizado para producir y servir páginas webs. Utiliza el motor javascript V8 (motor que utiliza Chrome entre otros) para ejecutar javascript. Al ser un motor utilizado en ambos entornos, se focalizan las mejoras y se reducen los costes al aunar esfuerzos en un mismo proyecto. Estas premisas han convertido a node en el entorno más potente de javascript, con holgura en todo el espectro de desarrollo.</p>
+
+<h3>Quickjs</h3>
+<p>Quickjs es un motor/entorno/librería que permite ejecutar código javascript fuera del navegador. Tiene poca adopción pero su sencillez, pequeño tamaño y fisonomía, hacen de el la utilidad perfecta para scripting, shell scripting, software embible y hardware de bajas prestaciones. Una de sus cualidades más destacadas es la posibilidad de compilar a código C tu programa utilizando la utilizad qjsc, o directamente generar un ejecitable a partir de tu código javascript.</p>
+
+<h3>Aplicaciones CLI</h3>
+<p>Las aplicaciones CLI son diseñadas para ser utilizadas como comandos desde una consola o terminal. Estos programas son ejecutados escribiendo su nombre acompañado de una serie de parámetros predefinidos con el objetivo de realizar una tarea u obtener un resultado. Son la versión en texto de sus homónimos las aplicaciones con interfaz gráfica y/o ventanas.</p>
+
+<h2>Instalación</h2>
+<p>Tanto node como quickjs son programas multiplataforma. Puedes instalarlos en una amplia variedad de sistemas operativos.</p>
+<h3>Instalación Node</h3>
+<ol>
+  <li>Visita el apartado de descargas de la página oficial de node <a href="https://nodejs.org/en/download/">en este enlace</a></li>
+  <li>Selecciona el binario/instalador correspondiente a tu sistema operativo</li>
+  <li>Sigue los pasos del instalador (windows) o ejecuta el binario desde la terminal (Unix), en caso que uses un sistema Unix, también puedes utilizar el gestor de paquetes de tu sistema.</li>
+</ol>
+
+<h3>Instalación Quickjs</h3>
+<ol>
+  <li>Si tienes instalado g++ y make o estás acostumbrado a compilar programas usando el código fuente, es recomendado compilarlo. <a href="https://bellard.org/quickjs/quickjs-2020-11-08.tar.xz">Aquí la última versión del código</a>.<br />
+En caso contrario puedes optar por descargarte el binario ya compilado, lo único malo es que no incluye qjsc (el compilador de javascript a binario) . De todas formas podrás correr tu código javascript con solo eo binario. <a href="https://bellard.org/quickjs/binary_releases/">Aquí eo listado de binarios disposibles</a>. Asegúrate de bajar la versión más reciente compatible con tu sistema.</li>
+  <li>Mueve el/los binarios extraídos del .tar.gz / .zip a una de las paths de binarios disponibles en tu sistema para poder utilizar qjs como un comando. En caso de Windows, la ruta C:\Windows\System32 o c:\Windows\SysWOW64 están incluidas por defecto en la variable de entorno PATH, asique si mueves a esa carpeta el ejecutable qjs, podrás utilizarlo desde la cmd como si fuese otro comando del sistema. En caso de Unix los directorios equivalente suelen ser /bin y ~/../usr/bin . Si compilaste desde código copia también qjsc a la ruta.</li>
+</ol>
+
+<h3>Testeo de la instalación</h3>
+<p>Crea un archivo de pruebas para comprobar que ambos entornos funcionen con el comando <mark id="markCommand">echo 'console.log("La fecha actual es: " + new Date())' &gt; pruebaInstalacion.js</mark>. Prueba node con el comando <mark id="markCommand">node pruebaInstalacion.js</mark>
+ y deberías ver la fecha en la consola como respuesta. Haz lo propio con quickjs utilizando el comando <mark id="markCommand">qjs pruebaInstalacion.js</mark></p>
+
+<h2>Creando primera utilidad CLI</h2>
+<p>La primera utilidad va a ser algo sencillo con poca utilidad práctica, pero que nos sirva para entender como trabajar con los parámetros, así como otras utilidades en cada entorno (utilizando un método simple sin depencencias ni módulos externos) y a escribir código portable que funcione entre ambos entornos. Vamos a escribir un programa que acepte texto y nos diga cuantas letras, numeros y caracteres tiene. Utilizaremos 3 parámetros distintos para indicarle al programa que resultado queremos que nos muestre y otro parámetro para indicarle el archivo en el que se encuentra el texto.</p>
+
+<h3>Haciendo código compatible</h3>
+<p>Quickjs usa imports especiales con strings internos. En concreto tiene 2 módulos de este tipo, el módulo std, y el módulo os. Estos se deben importar al inicio del archivo antes que nada y su sintaxis es tal que <code class="javascript">import * as std from "std";</code>. Tratar de correr un script con este tipo de import sin ruta ni extensión causaría una excepción en node. Para circunventar este problema se puede omitir estos imports utilizando el argumento --std. Para evitar tener que escribir este argumento puedes crear un alias. En caso de bash y linux, lo puedes hacer con el siguiente comando <mark id="markCommand">echo alias qjs="'"qjs --std "'" >> ~/.bashrc</mark>. En caso de windows para creat el alias puedes renombrar el binario de quickjs que añadiste anteriormente en C:\Windows\Sys y crear tu batch llamado qjs en el cual llames al qjs original con el argumento --std.
+También utilizaremos código para simplificar la detección de si el script corre en node o quickjs. <code class="javascript">let isQjs = false;
+try {
+  isQjs = std ? true : false;
+} catch(e) {}</code>
+</p>
+<h3>Leyendo los argumentos</h3>
+<p>En node para leer los argumentos utilizas process.argv, que retorna un array con todos los argumentos con los que fué llamado el programa. El equivalente en quickjs es scriptArgs. Para unificar ambos añadimos el código <code class="javascript">const cli = {
+  args: isQjs ? scriptArgs : process.argv.splice(1)
+};</code>
+Como vamos a cargar el texto al programa leyéndolo de un archivo, debemos unificar también la forma de abrir abrir archivos. Node utiliza el nódulo fs, mientras que quickjs utiliza el módulo std. <code class="javascript">let loadFile;
+if (isQjs) {                                                             loadFile = std.loadFile;
+} else {
+  const fs = require("fs");
+  loadFile = filename => {                                                 try {
+      filename = fs.readFileSync(filename, { encoding: "utf-8" })
+    } catch(e) {                                                             filename = null;                                                     }                                                                      return filename;                                                     };                                                                   }</code></p>
+
+<p>Utilizaremos también el objeto cli para guardar nuestros argumentos con un switch: <code class="javascript">for (let i in cli.args) {
+  switch(cli.args[i]) {
+    case "-f":
+    case "--file":
+      cli.file = "" + loadFile(cli.args[+i + 1]);
+    break;
+
+    case "-h":
+    case "--help":
+      cli.help = true;
+    break;
+
+    case "-l":
+    case "--letter":
+    case "--letters":
+      cli.letter = true;
+    break;
+
+    case "-n":
+    case "--number":
+    case "--numbers":
+      cli.number = true;
+    break;                                                                                                                                        case "-s":                                                             case "--simbol":                                                       case "--simbols":                                                        cli.simbol = true;                                                   break;
+
+    case "-t":
+    case "--total":
+      cli.total = true;
+  }
+}</code>
+
+<h3>Funcionalidad del programa CLI</h3>
+<p>Por último añadimos que hacer en caso de que se encontrase cada argumento. <code class="javascript">(() => {
+  if (cli.help) {
+    console.log(`usage [engine] charcounter.js [arguments]
+                                                                       engine:
++ qjs --std
++ node                                                                 
+arguments:
++ -f, --file      File name (path) of the file you want to load
++ -h, --help      This message
++ -l, --letters   Output how many letters the file has
++ -n, --numbers   Output how many numbers the file has                 + -s, --simbols   Output how many simbols the file has
++ -t, --total     shows how many characters the file has
+
+Letters: a to Z
+Numbers: 0 to 9
+Simbols: Anything else.                                                Characters: Total.                                                     
+`);                                                                        return;
+  } else if (!!!cli.file) {                                                console.log("Error: MISSING ARGUMENT -f\nArgument is mandatory.");     return;
+  } else {
+    if (cli.letter)
+      console.log(cli.file.match(/[a-zA-Z]/g).length);
+
+    if (cli.number)                                                          console.log(cli.file.match(/[0-9]/g).length);
+
+    if (cli.simbol)                                                          console.log(cli.file.match(/[^A-Za-z0-9]/g).length);
+
+    if (cli.total)
+      console.log(cli.file.length);
+  }                                                                    })();</code></p>
+
+<h3>Conclusiones</h3>
+<p>Al archivo con el código lo llamo charcounter.js, y funciona tanto en node como en qjs. Si miramos el tiempo que tarda el script con cada motor, podremos apreciar una diferencia muy significante: <code class="output">$ time qjs charcounter.js -f charcounter.js -l -n -s -t
+1064
+9
+1004
+2077
+real    0m0.028s
+user    0m0.012s
+sys     0m0.012s</code>
+
+<code class="output">$ time charcounter.js -f charcounter.js -l -n -s -t
+1064
+9
+1004
+2077
+real    0m0.250s
+user    0m0.216s
+sys     0m0.029s</code>
+
+
+Quickjs ha resultado 10 veces más veloz que node. Solo por eso ya es una opción que merece la pena considerar, sobre todo para scripts pequeños y utilidades. Cómo es esto posible? Todo se basa en la significante diferencia del tiempo de carga. Node es mucho más grande y completo en muchos sentidos y por tanto necesita más tiempo para arrancar. Pero una vez arrancado es mucho más veloz que quickjs debido sobre todo a su implementación JIT.<br />
+Siempre tendrías la opción de correr el comando de node como un servicio, así siempre lo tendrías disponible(evitando tener que arrancarlo cada vez que corrar el programa). Esa opción puede ser un malgasto de recursos importante o no, depende de tu situación. Por ejemplo si substituyeses bash por tu propio REPL tendría sentido correrlo como un servicio 24/7. En cambio con utilidades simples como este contador de caracteres Quickjs es la solución perfecta.<br />
+Si compilaste el código de quickjs  puedes usar qjsc para compilar el programa y añadirlo a la PATH de binarios para correrlo sin necesidad deprecederlo de qjs ni de qjs --std.
+</p>
+
+
+<style>
+mark #markCommand {
+  background-color: #111;
+  color: #eee;
+}
+
+code {
+  color: #555;
+  font-family: "Courier New", monospace;
+  white-space: pre;
+}
+
+code .output {
+  background-color: #111;
+  color: #eee;
+}
+</style>

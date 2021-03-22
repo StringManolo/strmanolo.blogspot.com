@@ -1,2 +1,2 @@
 # strmanolo.blogspot.com
-Entradas del blog en html
+CSS highlight library code from https://github.com/soulshined/ft-syntax-highlight

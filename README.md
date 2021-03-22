@@ -1,2 +1,2 @@
 # strmanolo.blogspot.com
-CSS from https://github.com/soulshined/ft-syntax-highlight
+CSS highlight library code from https://github.com/soulshined/ft-syntax-highlight

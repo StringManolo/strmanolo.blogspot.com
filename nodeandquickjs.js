@@ -23,19 +23,19 @@
 <h3>Instalación Quickjs</h3>
 <ol>
   <li>Si tienes instalado g++ y make o estás acostumbrado a compilar programas usando el código fuente, es recomendado compilarlo. <a href="https://bellard.org/quickjs/quickjs-2020-11-08.tar.xz">Aquí la última versión del código</a>.<br />
-En caso contrario puedes optar por descargarte el binario ya compilado, lo único malo es que no incluye qjsc (el compilador de javascript a binario) . De todas formas podrás correr tu código javascript con solo eo binario. <a href="https://bellard.org/quickjs/binary_releases/">Aquí eo listado de binarios disposibles</a>. Asegúrate de bajar la versión más reciente compatible con tu sistema.</li>
+En caso contrario puedes optar por descargarte el binario ya compilado, lo único malo es que no incluye qjsc (el compilador de javascript a binario) . De todas formas podrás correr tu código javascript con solo eo binario. <a href="https://bellard.org/quickjs/binary_releases/">Aquí el listado de binarios disposibles</a>. Asegúrate de bajar la versión más reciente compatible con tu sistema.</li>
   <li>Mueve el/los binarios extraídos del .tar.gz / .zip a una de las paths de binarios disponibles en tu sistema para poder utilizar qjs como un comando. En caso de Windows, la ruta C:\Windows\System32 o c:\Windows\SysWOW64 están incluidas por defecto en la variable de entorno PATH, asique si mueves a esa carpeta el ejecutable qjs, podrás utilizarlo desde la cmd como si fuese otro comando del sistema. En caso de Unix los directorios equivalente suelen ser /bin y ~/../usr/bin . Si compilaste desde código copia también qjsc a la ruta.</li>
 </ol>
 
 <h3>Testeo de la instalación</h3>
-<p>Crea un archivo de pruebas para comprobar que ambos entornos funcionen con el comando <mark id="markCommand">echo 'console.log("La fecha actual es: " + new Date())' &gt; pruebaInstalacion.js</mark>. Prueba node con el comando <mark id="markCommand">node pruebaInstalacion.js</mark>
- y deberías ver la fecha en la consola como respuesta. Haz lo propio con quickjs utilizando el comando <mark id="markCommand">qjs pruebaInstalacion.js</mark></p>
+<p>Crea un archivo de pruebas para comprobar que ambos entornos funcionen con el comando <mark id="markCommand"> echo 'console.log("La fecha actual es: " + new Date())' &gt; pruebaInstalacion.js </mark>. Prueba node con el comando <mark id="markCommand"> node pruebaInstalacion.js </mark>
+ y deberías ver la fecha en la consola como respuesta. Haz lo propio con quickjs utilizando el comando <mark id="markCommand"> qjs pruebaInstalacion.js </mark></p>
 
 <h2>Creando primera utilidad CLI</h2>
 <p>La primera utilidad va a ser algo sencillo con poca utilidad práctica, pero que nos sirva para entender como trabajar con los parámetros, así como otras utilidades en cada entorno (utilizando un método simple sin depencencias ni módulos externos) y a escribir código portable que funcione entre ambos entornos. Vamos a escribir un programa que acepte texto y nos diga cuantas letras, numeros y caracteres tiene. Utilizaremos 3 parámetros distintos para indicarle al programa que resultado queremos que nos muestre y otro parámetro para indicarle el archivo en el que se encuentra el texto.</p>
 
 <h3>Haciendo código compatible</h3>
-<p>Quickjs usa imports especiales con strings internos. En concreto tiene 2 módulos de este tipo, el módulo std, y el módulo os. Estos se deben importar al inicio del archivo antes que nada y su sintaxis es tal que <code class="javascript">import * as std from "std";</code>. Tratar de correr un script con este tipo de import sin ruta ni extensión causaría una excepción en node. Para circunventar este problema se puede omitir estos imports utilizando el argumento --std. Para evitar tener que escribir este argumento puedes crear un alias. En caso de bash y linux, lo puedes hacer con el siguiente comando <mark id="markCommand">echo alias qjs="'"qjs --std "'" >> ~/.bashrc</mark>. En caso de windows para creat el alias puedes renombrar el binario de quickjs que añadiste anteriormente en C:\Windows\Sys y crear tu batch llamado qjs en el cual llames al qjs original con el argumento --std.
+<p>Quickjs usa imports especiales con strings internos. En concreto tiene 2 módulos de este tipo, el módulo std, y el módulo os. Estos se deben importar al inicio del archivo antes que nada y su sintaxis es tal que <code class="javascript">import * as std from "std";</code>. Tratar de correr un script con este tipo de import sin ruta ni extensión causaría una excepción en node. Para circunventar este problema se puede omitir estos imports utilizando el argumento --std. Para evitar tener que escribir este argumento puedes crear un alias. En caso de bash y linux, lo puedes hacer con el siguiente comando <mark id="markCommand"> echo alias qjs="'"qjs --std "'" >> ~/.bashrc </mark>. En caso de windows para creat el alias puedes renombrar el binario de quickjs que añadiste anteriormente en C:\Windows\Sys y crear tu batch llamado qjs en el cual llames al qjs original con el argumento --std.
 También utilizaremos código para simplificar la detección de si el script corre en node o quickjs. <code class="javascript">let isQjs = false;
 try {
   isQjs = std ? true : false;
@@ -89,7 +89,7 @@ if (isQjs) {                                                             loadFil
     console.log(`usage [engine] charcounter.js [arguments]
                                                                        engine:
 + qjs --std
-+ node                                                                 
++ node
 arguments:
 + -f, --file      File name (path) of the file you want to load
 + -h, --help      This message
@@ -99,7 +99,7 @@ arguments:
 
 Letters: a to Z
 Numbers: 0 to 9
-Simbols: Anything else.                                                Characters: Total.                                                     
+Simbols: Anything else.                                                Characters: Total.
 `);                                                                        return;
   } else if (!!!cli.file) {                                                console.log("Error: MISSING ARGUMENT -f\nArgument is mandatory.");     return;
   } else {
@@ -147,9 +147,11 @@ mark #markCommand {
 }
 
 code {
-  color: #555;
+  display: block;
+  color: #ccc;
   font-family: "Courier New", monospace;
   white-space: pre;
+  overflow: auto;
 }
 
 code .output {

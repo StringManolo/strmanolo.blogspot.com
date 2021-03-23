@@ -1,93 +1,57 @@
-<h1 id="iniciacinjavascript">Iniciación Javascript</h1>
-
-<h2 id="indice">Indice:</h2>
-
+<h1>Iniciación Javascript</h1>
+<h2>Indice:</h2>
 <ul>
-<li>### 0. Un vistazo superficial.</li>
-
-<li>### 1. Primeros Pasos.</li>
-
-<li>### 2. Introducción al DOM. </li>
+<li>
+<h3>0. Un vistazo superficial.</h3>
+</li>
+<li>
+<h3>1. Primeros Pasos.</h3>
+</li>
+<li>
+<h3>2. Introducción al DOM.</h3>
+</li>
 </ul>
-
-<h2 id="captulo0unvistazosuperficial">Capítulo 0. Un vistazo superficial.</h2>
-
-<h3 id="ques">Qué es?</h3>
-
+<h2>Capítulo 0. Un vistazo superficial.</h2>
+<h3>Qué es?</h3>
 <p>Es un lenguaje de programación de propósito general. Esto significa que puede usarse en programas para móvil, programas de windows, drones, sistemas aeroespaciales, parquímetros, sistemas de contabilidad... Pero donde cobra mayor trascendencia es en la web. Originalmente en páginas web, pero también en el lado del servidor.</p>
-
-<h3 id="paraqusirve">Para qué sirve?</h3>
-
-<p>Para hacer cualquier tipo de programa. Sobre todo haciendo funcionar las páginas web, donde html se usa para definir el contenido, css modifica y estiliza la apariencia y javascript se ocupa de "lo que hace" la web. Desde mostrar algo al pulsar un botón, hasta descargarse una web entera, obtener algo que nos interesa de ella, almacenarlo, mostrarlo, enviarlo...</p>
-
-<h3 id="quconocimientosnecesito">Qué conocimientos necesito?</h3>
-
+<h3>Para qué sirve?</h3>
+<p>Para hacer cualquier tipo de programa. Sobre todo haciendo funcionar las páginas web, donde html se usa para definir el contenido, css modifica y estiliza la apariencia y javascript se ocupa de &quot;lo que hace&quot; la web. Desde mostrar algo al pulsar un botón, hasta descargarse una web entera, obtener algo que nos interesa de ella, almacenarlo, mostrarlo, enviarlo...</p>
+<h3>Qué conocimientos necesito?</h3>
 <p>Ninguno. Se usará html mínimo para crear un documento e indicar donde está el código con javascript.</p>
-
-<h2 id="programacingeneral">Programación General.</h2>
-
+<h2>Programación General.</h2>
 <p>Javascript y la mayoría de lenguajes de uso actual utilizan varios elementos que suelen ser comunes entre ellos:</p>
-
 <ul>
 <li>Expresiones o sentencias.</li>
-
 <li>Variables.</li>
-
 <li>Operadores.</li>
-
 <li>Condicionales.</li>
-
 <li>Bucles.</li>
-
 <li>Metodos y Funciones.</li>
-
 <li>Arrays.</li>
-
 <li>Objetos.</li>
 </ul>
-
-<p><em>Nota</em>: A continuación un resumen de que es cada cosa. No te preocupes si no lo entiendes todo ahora mismo o es demasiada información nueva o abstracta. Vas a ver ejemplos detallados de su uso que facilitaran asimilar los conceptos. </p>
-
-<h6 id="expresionesosentencias">Expresiones o sentencias:</h6>
-
-<p>Son lineas de código que sirven para expresar una acción o un contenido. Por ejemplo <em>1 + 3;</em> es una expresión que suma dos números. El punto y coma sirve para indicar el final de una expresión. </p>
-
-<h6 id="variables">Variables:</h6>
-
+<p><em>Nota</em>: A continuación un resumen de que es cada cosa. No te preocupes si no lo entiendes todo ahora mismo o es demasiada información nueva o abstracta. Vas a ver ejemplos detallados de su uso que facilitaran asimilar los conceptos.</p>
+<h6>Expresiones o sentencias:</h6>
+<p>Son lineas de código que sirven para expresar una acción o un contenido. Por ejemplo <em>1 + 3;</em> es una expresión que suma dos números. El punto y coma sirve para indicar el final de una expresión.</p>
+<h6>Variables:</h6>
 <p>Son contenedores para guardar algo que vamos a querer utilizar más tarde. Por ejemplo <em>var resultado = 1 + 3;</em> nos almacenará 4 dentro de una variable a la que pusimos de nombre resultado. Hay distintos tipos de datos y contenedores.</p>
-
-<h6 id="operadores">Operadores:</h6>
-
+<h6>Operadores:</h6>
 <p>Sirven para realizar operaciones de todo tipo. Tenemos los operadores matemáticos básicos pero también tenemos algunos otros útiles como el menor o igual que <em>&lt;=</em> el de asignación <em>=</em> o el de comparación <em>==</em> entre otros muchos.</p>
-
-<h6 id="condicionales">Condicionales:</h6>
-
+<h6>Condicionales:</h6>
 <p>Sirven para realizar una acción cuando se cumpla la condición que le indiquemos. Ejemplo <em>if (resultado == 4)</em> se cumplirá si la variable resultado es igual a 4. Lo veremos en más detalle.</p>
-
-<h6 id="bucles">Bucles:</h6>
-
+<h6>Bucles:</h6>
 <p>Sirven para poder realizar una acción en bucle, es decir, de forma repetida hasta alcanzar el resultado deseado. Ejemplo <em>while (resultado == 4)</em> se repetira en bucle la expresión que le indiquemos entre corchetes mientras la variable resultado sea igual a 4.</p>
-
-<h6 id="metodosyfunciones">Metodos y Funciones:</h6>
-
-<p>Los métodos y las funciones se utilizan para agrupar código designado para una tarea. Por ejemplo podemos agrupar un programa entero que haga la declaración de la renta y otro que mustre los datos de diversas empresas. De esta forma podremos llamar a todo el código para hacer la declaración de la renta de una forma sencilla sin tener que rescribirlo de cero cada vez que queramos hacer la declaración a una persona distinta. Al final nos quedara una función que podremos usar tal que: <em>hacerDeclaración("Paco");</em> <em>hacerDeclaración("Antonio");</em> ... Los métodos son prácticamente iguales.</p>
-
-<h6 id="arrays">Arrays:</h6>
-
-<p>Los arrays son contenedores al igual que las variables, pero nos permiten almacenar varios datos y también variables. Ejemplo: <em>var colores = ["rojo", "verde", "azul"];</em>
-  Para acceder a ellos usaremos índices que empiezan a contar desde 0. Por ejemplo si quiero mostrar la palabra rojo:
-  <em>alert(colores[0]);</em></p>
-
-<h6 id="objetos">Objetos:</h6>
-
+<h6>Metodos y Funciones:</h6>
+<p>Los métodos y las funciones se utilizan para agrupar código designado para una tarea. Por ejemplo podemos agrupar un programa entero que haga la declaración de la renta y otro que mustre los datos de diversas empresas. De esta forma podremos llamar a todo el código para hacer la declaración de la renta de una forma sencilla sin tener que rescribirlo de cero cada vez que queramos hacer la declaración a una persona distinta. Al final nos quedara una función que podremos usar tal que: <em>hacerDeclaración(&quot;Paco&quot;);</em> <em>hacerDeclaración(&quot;Antonio&quot;);</em> ... Los métodos son prácticamente iguales.</p>
+<h6>Arrays:</h6>
+<p>Los arrays son contenedores al igual que las variables, pero nos permiten almacenar varios datos y también variables. Ejemplo: <em>var colores = [&quot;rojo&quot;, &quot;verde&quot;, &quot;azul&quot;];</em>
+Para acceder a ellos usaremos índices que empiezan a contar desde 0. Por ejemplo si quiero mostrar la palabra rojo:
+<em>alert(colores[0]);</em></p>
+<h6>Objetos:</h6>
 <p>Los objetos son agrupaciones de datos o funciones que están relacionados de alguna forma. Por ejemplo podemos hacer un objeto persona que va a tener variables como nombre, altura, edad... Y métodos como hablar, caminar, comer...</p>
-
-<h2 id="captulo1primerospasos">Capítulo 1. Primeros Pasos.</h2>
-
-<h4 id="creandoeldocumento">Creando el documento:</h4>
-
+<h2>Capítulo 1. Primeros Pasos.</h2>
+<h4>Creando el documento:</h4>
 <p>Antes de empezar a programar en javascript necesitas un documento HTML para indicarle al navegador que vamos a usar javascript:</p>
-
 <pre><code>&lt;html&gt;
 &lt;body&gt;
 &lt;script&gt;
@@ -96,13 +60,11 @@
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-
 <p>Solo son 3 etiquetas html. Dentro de las etiquetas script vas a escribir el código javascript que quieras. Si quieres utilizar acentos y caracteteres especiales debes añadir las etiquetas head y meta charset. Por lo general puedes usar el ejemplo anterior, o si lo prefieres añadir más datos quedando:</p>
-
 <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
-&lt;meta charset="utf-8"&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
 &lt;title&gt;Título de la pestaña&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
@@ -113,18 +75,12 @@ Este texto lo veras en el documento.
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-
-<p>Este código HTML debes escribirlo y guardarlo en un archivo con cualquier editor de texto. Por ejemplo el notepad o bloc de notas de windows. Guárdalo como NombreDeMiDocumento.html </p>
-
-<p>Vamos a trabajar en este archivo que abriremos en el navegador para ver los resultados. De momento no hace nada. Si ponemos 1 + 3; hará la suma, pero no veremos el resultado porque no se lo indicamos. 
-Existen multitud de formas de ver los resultados, nosotros veremos la más básica de todas, la función alert. </p>
-
-<h3 id="conociendoalert">Conociendo alert</h3>
-
+<p>Este código HTML debes escribirlo y guardarlo en un archivo con cualquier editor de texto. Por ejemplo el notepad o bloc de notas de windows. Guárdalo como NombreDeMiDocumento.html</p>
+<p>Vamos a trabajar en este archivo que abriremos en el navegador para ver los resultados. De momento no hace nada. Si ponemos 1 + 3; hará la suma, pero no veremos el resultado porque no se lo indicamos.
+Existen multitud de formas de ver los resultados, nosotros veremos la más básica de todas, la función alert.</p>
+<h3>Conociendo alert</h3>
 <p>alert es una función (que ya viene definida en el navegador) que muestra una ventana pequeña en pantalla con el valor que le indiquemos.</p>
-
 <p>Vamos a utilizar alert para mostrar el resultado de la suma:</p>
-
 <pre><code>&lt;html&gt;
 &lt;body&gt;
 &lt;script&gt;
@@ -133,31 +89,25 @@ alert(1 + 3);
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-
 <p>Asegúrate de guardar los cambios y abre el archivo con extensión tuArchivo.html en el navegador. Para ello puedes hacer click derecho y seleccionar abrir con ... Ahí deberás elegir Chrome, Mozilla, Edge, Internet Explorer, Safari, Opera... El explorador que tú tengas. Debes ver una ventana que muestre el número 4. Si no es así repite el proceso y asegúrate que todo está correcto.</p>
-
 <p>A parte de realizar operaciones también puedes mostrar texto si lo encierras entre comillas. Ejemplo:</p>
-
 <pre><code>&lt;html&gt;
 &lt;body&gt;
 &lt;script&gt;
-alert("Bienvenido a mi primer programa con javascript");
+alert(&quot;Bienvenido a mi primer programa con javascript&quot;);
 &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-
-<h3 id="trabajandoconvariables">Trabajando con variables.</h3>
-
+<h3>Trabajando con variables.</h3>
 <p>También puedes guardar el resultado de la operación o el texto en una variable y mostrarlo desde el alert.</p>
-
 <pre><code>&lt;html&gt;
 &lt;body&gt;
 &lt;script&gt;
 var resultado = 4;
-var saludo = "bienvenido a mi primer programa";
-var nombre = "Juan";
-alert("Hola");
+var saludo = &quot;bienvenido a mi primer programa&quot;;
+var nombre = &quot;Juan&quot;;
+alert(&quot;Hola&quot;);
 alert(nombre);
 alert(saludo);
 alert(resultado);
@@ -165,141 +115,110 @@ alert(resultado);
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-
 <p>Es un poco incómodo mostrar 4 alerts distintos y que el usuario necesite pulsar 4 veces en aceptar para leer todos nuestros mensajes. Hay secuencias de caracteres que tienen funcionalldad especial, como \n que nos permite hacer una <strong>n</strong>ueva línea. Y el operador <strong>+</strong> sirve también para unir texto, no solo para sumar números, asique podemos mostrarlo todo en un solo alert.</p>
-
 <pre><code>&lt;html&gt;
 &lt;body&gt;
 &lt;script&gt;
 var resultado = 4;
-var saludo = "bienvenido a mi primer programa";
-var nombre = "Juan";
-alert("Hola " + nombre + " " + saludo + ".\n" + "Ya no necesito utilizar " + resultado + " alerts para mostrarte este texto");
+var saludo = &quot;bienvenido a mi primer programa&quot;;
+var nombre = &quot;Juan&quot;;
+alert(&quot;Hola &quot; + nombre + &quot; &quot; + saludo + &quot;.\n&quot; + &quot;Ya no necesito utilizar &quot; + resultado + &quot; alerts para mostrarte este texto&quot;);
 &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-
 <p>Pruébalo, verás el siguiente texto:</p>
-
 <pre><code>Hola Juan bienvenido a mi primer programa.
 Ya no necesito utilizar 4 alerts para mostrarte este texto.
 </code></pre>
-
 <p>Probablemente nuestro usuario no se llame Juan. Hay otra función muy similar a alert llamada prompt que da al usuario la posibilidad de escribir algo en la ventana, y a nosotros de obtenerlo.</p>
-
 <p>Vamos a hacer un programa que pida el nombre, la edad y le dedique un saludo personalizado.</p>
-
 <pre><code>&lt;html&gt;
 &lt;body&gt;
 &lt;script&gt;
-var saludo = "Hola ";
-var nombre = prompt("Cual es tu nombre?");
-var edad = prompt("Cuantos años tienes?");
-alert(saludo + nombre + " tienes " + edad + " años.");
+var saludo = &quot;Hola &quot;;
+var nombre = prompt(&quot;Cual es tu nombre?&quot;);
+var edad = prompt(&quot;Cuantos años tienes?&quot;);
+alert(saludo + nombre + &quot; tienes &quot; + edad + &quot; años.&quot;);
 &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-
-<h3 id="loscondicionales">Los condicionales.</h3>
-
+<h3>Los condicionales.</h3>
 <p>Esto está genial! Pero a todos los saludamos igual. Vamos a usar los condicionales para personalizar más el saludo:
-<strong>A partir de ahora se asume que sabes que se debe poner el código en el documento entre las etiquetas y se omite por brevedad.</strong> </p>
-
-<pre><code>var nombre = prompt("Cual es tu nombre?");
-var edad = prompt("Cuantos años tienes?");
+<strong>A partir de ahora se asume que sabes que se debe poner el código en el documento entre las etiquetas y se omite por brevedad.</strong></p>
+<pre><code>var nombre = prompt(&quot;Cual es tu nombre?&quot;);
+var edad = prompt(&quot;Cuantos años tienes?&quot;);
 
 if(edad &lt; 18) {
-  var saludo = "Qué pasa ";
-  var postSaludo = " qué tal los estudios?";
+  var saludo = &quot;Qué pasa &quot;;
+  var postSaludo = &quot; qué tal los estudios?&quot;;
 }
 
 if(edad &gt;= 18 &amp;&amp; edad &lt; 65) {
-  var saludo = "Hola ";
-  var postSaludo = " qué tal la familia?";
+  var saludo = &quot;Hola &quot;;
+  var postSaludo = &quot; qué tal la familia?&quot;;
 }
 
 if(edad &gt;= 65) {
-  var saludo = "Adelante ";
-  var postSaludo = " qué tal está usted?";
+  var saludo = &quot;Adelante &quot;;
+  var postSaludo = &quot; qué tal está usted?&quot;;
 }
 
 alert(saludo + nombre + postSaludo);
 </code></pre>
-
 <p>El condicional if tiene una condición que va entre paréntesis y lo que queramos que pase si se cumple la condición va entre corchetes. También usamos el operador and <strong>&amp;&amp;</strong> que sirve para añadir más de una condición que se tiene que cumplir.</p>
-
 <p>Ahora vamos a hacer un programa que pida una contraseña, si se cumple la condición, es decir si se puso la contraseña correcta mostraremos un texto indicándolo, y en caso contrario mostraremos otro distinto.</p>
-
-<pre><code>var contraseña = "abc123";
-var introducida = prompt("Adivina la contraseña");
+<pre><code>var contraseña = &quot;abc123&quot;;
+var introducida = prompt(&quot;Adivina la contraseña&quot;);
 
 if (contraseña == introducida) {
-  alert("Enhorabuena, introduciste la contraseña correcta.");
+  alert(&quot;Enhorabuena, introduciste la contraseña correcta.&quot;);
 } else {
-  alert("Ohh, fallaste!");
+  alert(&quot;Ohh, fallaste!&quot;);
 }
 </code></pre>
-
 <p>La palabra clave else sirve para poner código que se ejecute cuando no se cumpla la condición del if.</p>
-
 <p>Este programa tiene un problema, y es que si queremos que el usuario tenga 10 intentos, tendrá que abrir la página 10 veces  o tendremos que pegar 10 veces el código. No parece algo tan malo, pero y si le quisiésemos dar 1000 intentos? Sería una locura copiar y pegar tanto y el archivo ocuparía mucho espacio. Para evitar esto tenemos los bucles.</p>
-
-<h3 id="losbucles">Los bucles.</h3>
-
+<h3>Los bucles.</h3>
 <p>El bucle while se parece mucho al condicional if, pero en lugar de ejecutarse una vez, lo hace hasta que la condición se cumpla:</p>
-
-<pre><code>var contraseña = "abc123"
-var introducida = "aún no se pidió";
+<pre><code>var contraseña = &quot;abc123&quot;
+var introducida = &quot;aún no se pidió&quot;;
 
 while (contraseña != introducida) {
-  introducida = prompt("Adivina la contraseña");
+  introducida = prompt(&quot;Adivina la contraseña&quot;);
 }
 </code></pre>
-
 <p>Aquí usamos el operador <strong>desigual a</strong> en la condición. Es decir mientras la contraseña sea desigual a la introducida, ejecuta el código entre corchetes. Como ves <strong>var</strong> solo es necesario utilizarlo para crear la variable, después se puede omitir.</p>
-
 <p>Otro bucle de uso muy amplio es el for, que se puede ver de varias formas. Solo vamos a ver la forma clásica que en lugar de utilizar un condicional usa 3 expresiones. Es común su uso para contar o hacer acciones un determinado número de veces:</p>
-
 <pre><code>for (var contador = 0; contador &lt; 10; contador += 1) {
   alert(contador);
 }
 </code></pre>
-
 <p>Como ves entre paréntesis hay 3 expresiones. La primera es para indicar la variable que se usará de contador. La segunda para indicar que condición se debe cumplir. La tercera para indicar cuanto debe aumentar o disminiur el contador.</p>
-
-<h3 id="funcionesymtodos">Funciones y métodos.</h3>
-
+<h3>Funciones y métodos.</h3>
 <p>Las funciones y métodos son de las herramientas más útiles. Hasta ahora usamos alert y prompt, 2 funciones que nos sirven para interactuar con el usuario de forma sencilla. Nosotros haremos una función que nos permita obtener múltiples datos de una persona y la utilizaremos en un bucle en base al número de personas que nos indique el usuario. Es decir, si el usuario quiere darnos los datos de 2 personas, de 8, etc, nosotros tomaremos los datos de todos ellos.
 Primero vamos a preguntarle al usuario:</p>
-
-<pre><code>var miembrosUnidadFamiliar = prompt("Con cuantas personas convive en su domicilio?");
+<pre><code>var miembrosUnidadFamiliar = prompt(&quot;Con cuantas personas convive en su domicilio?&quot;);
 </code></pre>
-
 <p>El siguiente paso sería preguntarle los datos que queremos saber de cada miembro:</p>
-
-<pre><code>var nombre = prompt("Introduzca el nombre de un miembro de su unidad familiar");
-var edad = prompt("Dígame la edad de " + nombre);
-var sexo = prompt(nombre + " es hombre o mujer?");
-var estadoCivil = prompt(nombre + " está casado/a, soltero/a, viudo/a o divorciado/a");
+<pre><code>var nombre = prompt(&quot;Introduzca el nombre de un miembro de su unidad familiar&quot;);
+var edad = prompt(&quot;Dígame la edad de &quot; + nombre);
+var sexo = prompt(nombre + &quot; es hombre o mujer?&quot;);
+var estadoCivil = prompt(nombre + &quot; está casado/a, soltero/a, viudo/a o divorciado/a&quot;);
 </code></pre>
-
 <p>Ahora podemos meter todas estas preguntas en una sola función. Y de paso hacemos que la función nos retorne todo organizado:</p>
-
 <pre><code>function obtenerDatos() {
-  var nombre = prompt("Introduzca el nombre de un miembro de su unidad familiar");
-  var edad = prompt("Dígame la edad de " + nombre);
-  var sexo = prompt(nombre + " es hombre o mujer?");
-  var estadoCivil = prompt(nombre + " está casado/a, soltero/a, viudo/a o divorciado/a");
+  var nombre = prompt(&quot;Introduzca el nombre de un miembro de su unidad familiar&quot;);
+  var edad = prompt(&quot;Dígame la edad de &quot; + nombre);
+  var sexo = prompt(nombre + &quot; es hombre o mujer?&quot;);
+  var estadoCivil = prompt(nombre + &quot; está casado/a, soltero/a, viudo/a o divorciado/a&quot;);
 
-  return "Nombre:" + nombre + "\nEdad:" + edad + "\nSexo:" + sexo + "\nEstado Civil:" + estadoCivil;
+  return &quot;Nombre:&quot; + nombre + &quot;\nEdad:&quot; + edad + &quot;\nSexo:&quot; + sexo + &quot;\nEstado Civil:&quot; + estadoCivil;
 }
 </code></pre>
-
 <p>Ya tenemos definido lo que hace. Ahora podemos usarla siempre que queramos de la misma forma que un prompt. Solo nos falta el bucle para acabar el programa, quedando tal que:</p>
-
-<pre><code>var miembrosUnidadFamiliar = prompt("Con cuantas personas convive en su domicilio?");
+<pre><code>var miembrosUnidadFamiliar = prompt(&quot;Con cuantas personas convive en su domicilio?&quot;);
 
 for (var contador = 0; contador &lt; miembrosUnidadFamiliar; ++contador) {
   var datosDeFamiliar = obtenerDatos();
@@ -308,188 +227,137 @@ for (var contador = 0; contador &lt; miembrosUnidadFamiliar; ++contador) {
 
 
 function obtenerDatos() {
-  var nombre = prompt("Introduzca el nombre de un miembro de su unidad familiar");
-  var edad = prompt("Dígame la edad de " + nombre);
-  var sexo = prompt(nombre + " es hombre o mujer?");
-  var estadoCivil = prompt(nombre + " está casado/a, soltero/a, viudo/a o divorciado/a");
+  var nombre = prompt(&quot;Introduzca el nombre de un miembro de su unidad familiar&quot;);
+  var edad = prompt(&quot;Dígame la edad de &quot; + nombre);
+  var sexo = prompt(nombre + &quot; es hombre o mujer?&quot;);
+  var estadoCivil = prompt(nombre + &quot; está casado/a, soltero/a, viudo/a o divorciado/a&quot;);
 
-  return "Nombre:" + nombre + "\nEdad:" + edad + "\nSexo:" + sexo + "\nEstado Civil:" + estadoCivil;
+  return &quot;Nombre:&quot; + nombre + &quot;\nEdad:&quot; + edad + &quot;\nSexo:&quot; + sexo + &quot;\nEstado Civil:&quot; + estadoCivil;
 }
 </code></pre>
-
 <p>A lo largo del tiempo podríamos hacer funciones y almacenarlas en un archivo para poder utilizarlas sin tener que crearlas de nuevo de la misma forma que prompt y alert.</p>
-
-<h3 id="arrays-1">Arrays.</h3>
-
+<h3>Arrays.</h3>
 <p>En lugar de retornar la cadena de texto, nos puede ser de interes separar los datos para acceder a ellos de forma individual:</p>
-
 <pre><code>var datosDeFamiliar = [nombre, edad, sexo, estadoCivil];
 </code></pre>
-
 <p>Así nos es posible tener todos los datos en un solo lugar y a la vez poder acceder a ellos individualmente:</p>
-
 <pre><code>alert(datosDeFamiliar);
-alert("Hola " + datosDeFamiliar[0] + " estás " + datosDeFamiliar[3] + " eres " + datosDeFamiliar[2] + " y tienes " + datosDeFamiliar[1] + " años.");
+alert(&quot;Hola &quot; + datosDeFamiliar[0] + &quot; estás &quot; + datosDeFamiliar[3] + &quot; eres &quot; + datosDeFamiliar[2] + &quot; y tienes &quot; + datosDeFamiliar[1] + &quot; años.&quot;);
 </code></pre>
-
-<h3 id="mtodos">Métodos.</h3>
-
+<h3>Métodos.</h3>
 <p>Qué pasa si queremos mostrar solo la inicial del nombre? Para ello javascript al igual que con alert y prompt, nos da un método llamado <em>substr</em> cuya finalidad es a partir de un texto formar otro. Por ejemplo a partir del nombre Paco podremos obtener la P. Los métodos tienen una diferencia con las funciones, y es que estos son específicos de un objeto. Esto significa que no podemos crear un subtexto de un número, porque como es obvio un número no es un texto. Como ya vimos en ejemplos anteriores, el texto va entre comillas, mientras que los números no.
 Veamos un ejemplo del método substr:</p>
-
-<pre><code>var nombre = "paco";
+<pre><code>var nombre = &quot;paco&quot;;
 var inicial = nombre.substr(0, 1);
 alert(inicial);
 </code></pre>
-
-<p>En este caso substr acepta 2 números separados por comas. El primero nos permite seleccionar la posición desde la que empezar a obtener caracteres. El segundo número nos permite indicar cuantos caracteres vamos a obtener a partir de la posición que indicamos. En el ejemplo a partir de la letra 0, obtendremos 1 letra. Es decir de <em>paco</em> obtendremos la <em>p</em>. Si quisiesemos obtener <em>ac</em> haríamos <em>var letrasCentrales = nombre.substr(1, 2);</em> es decir, desde el caracter <em>a</em> obtenemos 2 letras. </p>
-
+<p>En este caso substr acepta 2 números separados por comas. El primero nos permite seleccionar la posición desde la que empezar a obtener caracteres. El segundo número nos permite indicar cuantos caracteres vamos a obtener a partir de la posición que indicamos. En el ejemplo a partir de la letra 0, obtendremos 1 letra. Es decir de <em>paco</em> obtendremos la <em>p</em>. Si quisiesemos obtener <em>ac</em> haríamos <em>var letrasCentrales = nombre.substr(1, 2);</em> es decir, desde el caracter <em>a</em> obtenemos 2 letras.</p>
 <p>Hay muchos métodos predefinidos en javascript y se pueden encadenar. Por ejemplo si queremos mostrar la inicial de un nombre en mayúsculas podremos usar <em>substr(0, 1)</em> y <em>toUpperCase()</em> ejemplo:</p>
-
-<pre><code>var nombre = prompt("Cómo te llamas?"):
+<pre><code>var nombre = prompt(&quot;Cómo te llamas?&quot;):
 var inicial = nombre.substr(0, 1);
 var inicialEnMayuscula = inicial.toUpperCase();
 alert(inicialEnMayuscula);
 </code></pre>
-
 <p>También podemos encadenar métodos en una sola línea:</p>
-
-<pre><code>var nombre = prompt("Cómo te llamas?");
+<pre><code>var nombre = prompt(&quot;Cómo te llamas?&quot;);
 var inicialEnMayuscula = nombre.substr(0, 1).toUpperCase();
 alert(inicialEnMayuscula);
 </code></pre>
-
 <p>Esto es posible debido a que javascript va evaluando las expresiones de izquierda a derecha remplazándolas por su resultado. Qué signifca esto? Significa que podemos simplificar mucho el código agrupando la funcionalidad en una sola linea, de tal forma que el ejemplo anterior también lo podemos hacer tal que:</p>
-
-<pre><code>alert(prompt("Cómo te llamas?").substr(0, 1).toUpperCase());
+<pre><code>alert(prompt(&quot;Cómo te llamas?&quot;).substr(0, 1).toUpperCase());
 </code></pre>
-
 <p>El navegador hará lo siguiente:
-  Hay paréntesis? Entonces evaluo lo que hay dentro:</p>
-
-<p>Encuentro <em>prompt("Cómo te llamas?")</em> ejecuto la función y la remplazo por el resultado quedando el código tal que:
-  <em>alert("paco".substr(0, 1).toUpperCase());</em></p>
-
+Hay paréntesis? Entonces evaluo lo que hay dentro:</p>
+<p>Encuentro <em>prompt(&quot;Cómo te llamas?&quot;)</em> ejecuto la función y la remplazo por el resultado quedando el código tal que:
+<em>alert(&quot;paco&quot;.substr(0, 1).toUpperCase());</em></p>
 <p>Hay paréntesis? Entonces evaluo lo que hay dentro:</p>
-
-<p>Encuentro <em>"paco".substr(0, 1)</em> ejecuto el método y lo remplazo por el resultado quedando el código tal que:
-  <em>alert("p".toUpperCase());</em></p>
-
+<p>Encuentro <em>&quot;paco&quot;.substr(0, 1)</em> ejecuto el método y lo remplazo por el resultado quedando el código tal que:
+<em>alert(&quot;p&quot;.toUpperCase());</em></p>
 <p>Hay paréntesis? Entonces evaluo lo que hay dentro:</p>
-
-<p>Encuentro <em>"p".toUpperCase()</em> ejecuto el método y lo remplazo por el resultado quedando el código tal que:
-  <em>alert("P");</em></p>
-
-<p>Como se puede apreciar ya no quedan expresiones que evaluar, asique el navegador pasará a hacer alert de "P".</p>
-
-<h3 id="objetos-1">Objetos.</h3>
-
+<p>Encuentro <em>&quot;p&quot;.toUpperCase()</em> ejecuto el método y lo remplazo por el resultado quedando el código tal que:
+<em>alert(&quot;P&quot;);</em></p>
+<p>Como se puede apreciar ya no quedan expresiones que evaluar, asique el navegador pasará a hacer alert de &quot;P&quot;.</p>
+<h3>Objetos.</h3>
 <p>Todo lo que hemos usado hasta ahora son objetos. Un objeto no es más que un contenedor en el que podemos guardar variables y funciones. Cuando una variable o una función pertenece a un objeto, nos referiremos a ellas como propiedades y métodos.
 Los objetos de momento los veremos como una forma sencilla de agrupar variables y funciones que tengan que ver entre sí. Para crear un objeto usaremos:</p>
-
 <pre><code>var vehiculo = {};
 </code></pre>
-
 <p>Para añadir una variable(propiedad) usaramos el operador <em>.</em> que ya vimos:</p>
-
 <pre><code>vehiculo.velocidadActual = 0;
 </code></pre>
-
 <p>Para añadir una función(método) también usaremos el mismo operador, pero asignaremos una función sin nombre:</p>
-
 <pre><code>vehiculo.acelerar = function() {
   vehiculo.velocidadActual += 1;
 };
 </code></pre>
-
-<h2 id="captulo2introduccinaldom">Capítulo 2. Introducción al DOM.</h2>
-
-<p>El Document Object Model es un objeto de javascript incluido en los navegadores. Este objeto <em>document</em> nos permite crear elementos como texto, imágenes, botones, hypervínculos, añadirlos al documento actual, obtenerlos, eliminarlos, escuchar eventos...  </p>
-
-<p>Principalmente hay 2 formas de obtener un elemento. Definiéndolo con código html y obteniendolo usando un selector. O bien creándolo directamente desde el código javascript.  </p>
-
+<h2>Capítulo 2. Introducción al DOM.</h2>
+<p>El Document Object Model es un objeto de javascript incluido en los navegadores. Este objeto <em>document</em> nos permite crear elementos como texto, imágenes, botones, hypervínculos, añadirlos al documento actual, obtenerlos, eliminarlos, escuchar eventos...</p>
+<p>Principalmente hay 2 formas de obtener un elemento. Definiéndolo con código html y obteniendolo usando un selector. O bien creándolo directamente desde el código javascript.</p>
 <p>Primero un ejemplo de un enlace definido en html:</p>
-
 <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
-&lt;meta charset="utf-8"&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
 &lt;title&gt;Ejemplo de un hypervínculo&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-&lt;a href="https://google.com/search?q=Tutoriales de HTML"&gt;Tutoriales de HTML en Google&lt;/a&gt;
+&lt;a href=&quot;https://google.com/search?q=Tutoriales de HTML&quot;&gt;Tutoriales de HTML en Google&lt;/a&gt;
 &lt;script&gt;
 
 &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-
 <p>El resultado es un link tal que <a href="https://google.com/search?q=Tutoriales%20de%20HTML">Tutoriales de HTML en Google</a>. Es un elemento sencillo que nos permite ir a la página o elemento de la página deseado.</p>
-
 <p>Dentro del atributo href pondremos el destino. Entre las etiquetas pondremos el texto que se va a mostrar.</p>
-
-<p>Como puedes apreciar el elemento <em><a></em>  está entre las etiquetas body.
+<p>Como puedes apreciar el elemento <em>&lt;a&gt;</em>  está entre las etiquetas body.
 Todo lo que pongas entre estas etiquetas excluyendo las etiquetas script y su contenido, será visible para el usuario.</p>
-
 <p>Estos elementos podremos obtenerlos en javascript para modificarlos y demás. Para facilitar su obtención, le vamos añadir el atributo <em>id</em> para poder identificarlo desde javascript:</p>
-
 <pre><code>...
 &lt;body&gt;
-&lt;a id="vinculoAGoogle1" href="https://google.com/search?q=Tutoriales de HTML"&gt;Tutoriales de HTML en Google&lt;/a&gt;
+&lt;a id=&quot;vinculoAGoogle1&quot; href=&quot;https://google.com/search?q=Tutoriales de HTML&quot;&gt;Tutoriales de HTML en Google&lt;/a&gt;
 &lt;script&gt;
 
 &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-
 <p>Ahora podremos obtenerlo utilizando el <em>id</em> de 2 formas. Con el método obtener elemento por id:</p>
-
-<pre><code>var vinculo = document.getElementById("vinculoAGoogle1");
+<pre><code>var vinculo = document.getElementById(&quot;vinculoAGoogle1&quot;);
 </code></pre>
-
 <p>O mediante una selección por consulta:</p>
-
-<pre><code>var vinculo = document.querySelector("#vinculoAGoogle1");
+<pre><code>var vinculo = document.querySelector(&quot;#vinculoAGoogle1&quot;);
 </code></pre>
-
 <p>Yo recomiendo la segunda forma porque permite seleccionar también por el nombre de la etiqueta(omitiendo el <em>#</em>), por clase(usando un <em>.</em>), y por más atributos y selectores simplente cambiando el texto entre paréntesis. Por simplificar no es prioritario conocerlos todos ahora.</p>
-
 <p>La otra forma de crear un elemento es hacerlo desde javascript y añadirlo entre las etiquetas body:</p>
-
 <pre><code>...
 &lt;script&gt;
-var vinculo = document.createElement("a");
-vinculo.href = "https://google.com/search?q=Tutoriales de HTML";
-vinculo.innerText = "Tutoriales de HTML en Google"
+var vinculo = document.createElement(&quot;a&quot;);
+vinculo.href = &quot;https://google.com/search?q=Tutoriales de HTML&quot;;
+vinculo.innerText = &quot;Tutoriales de HTML en Google&quot;
 
-var body = document.querySelector("body");
+var body = document.querySelector(&quot;body&quot;);
 body.appendChild(vinculo);
 &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-
 <p>Lo habitual es crear los elementos que conocemos de antemano con HTML y los que pueden variar o solo van a existir en casos remotos con javascript.</p>
-
 <p>Los elementos tienen múltiples atributos que podemos editar o leer desde javascript. Uno de los más interesantes a la hora de inspeccionar los elementos es outerHTML.</p>
-
 <p>Por ejemplo podremos ver como queda el body tras añadir el elemento creado desde javascript:</p>
-
 <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
-&lt;meta charset="utf-8"&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
 &lt;title&gt;Ejemplo de outterHTML&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
 &lt;script&gt;
-var vinculo = document.createElement("a");
-vinculo.href = "https://google.com/search?q=Tutoriales de HTML";
-vinculo.innerText = "Tutoriales de HTML en Google";
+var vinculo = document.createElement(&quot;a&quot;);
+vinculo.href = &quot;https://google.com/search?q=Tutoriales de HTML&quot;;
+vinculo.innerText = &quot;Tutoriales de HTML en Google&quot;;
 
-var body = document.querySelector("body");
+var body = document.querySelector(&quot;body&quot;);
 body.appendChild(vinculo);
 
 alert(body.outerHTML);
@@ -497,5 +365,4 @@ alert(body.outerHTML);
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-
 <p>También hay eventos como click, load, error, ....</p>

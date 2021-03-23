@@ -1,17 +1,17 @@
-<h1>Iniciación Javascript</h1>
+<h1>Javascript tutorial</h1>
 <h2>Indice:</h2>
 <ul>
 <li>
-<h3>0. Un vistazo superficial.</h3>
+<h3 id="vistazoSuperficialLink">0. Un vistazo superficial.</h3>
 </li>
 <li>
-<h3>1. Primeros Pasos.</h3>
+<h3 id="primerosPasosLink">1. Primeros Pasos.</h3>
 </li>
 <li>
-<h3>2. Introducción al DOM.</h3>
+<h3 id="introduccionDomLink">2. Introducción al DOM.</h3>
 </li>
 </ul>
-<h2>Capítulo 0. Un vistazo superficial.</h2>
+<h2 id="vistazoSuperficial">Capítulo 0. Un vistazo superficial.</h2>
 <h3>Qué es?</h3>
 <p>Es un lenguaje de programación de propósito general. Esto significa que puede usarse en programas para móvil, programas de windows, drones, sistemas aeroespaciales, parquímetros, sistemas de contabilidad... Pero donde cobra mayor trascendencia es en la web. Originalmente en páginas web, pero también en el lado del servidor.</p>
 <h3>Para qué sirve?</h3>
@@ -49,7 +49,7 @@ Para acceder a ellos usaremos índices que empiezan a contar desde 0. Por ejempl
 <em>alert(colores[0]);</em></p>
 <h6>Objetos:</h6>
 <p>Los objetos son agrupaciones de datos o funciones que están relacionados de alguna forma. Por ejemplo podemos hacer un objeto persona que va a tener variables como nombre, altura, edad... Y métodos como hablar, caminar, comer...</p>
-<h2>Capítulo 1. Primeros Pasos.</h2>
+<h2 id="primerosPasos">Capítulo 1. Primeros Pasos.</h2>
 <h4>Creando el documento:</h4>
 <p>Antes de empezar a programar en javascript necesitas un documento HTML para indicarle al navegador que vamos a usar javascript:</p>
 <pre><code>&lt;html&gt;
@@ -290,7 +290,7 @@ Los objetos de momento los veremos como una forma sencilla de agrupar variables 
   vehiculo.velocidadActual += 1;
 };
 </code></pre>
-<h2>Capítulo 2. Introducción al DOM.</h2>
+<h2 id="introduccionDom">Capítulo 2. Introducción al DOM.</h2>
 <p>El Document Object Model es un objeto de javascript incluido en los navegadores. Este objeto <em>document</em> nos permite crear elementos como texto, imágenes, botones, hypervínculos, añadirlos al documento actual, obtenerlos, eliminarlos, escuchar eventos...</p>
 <p>Principalmente hay 2 formas de obtener un elemento. Definiéndolo con código html y obteniendolo usando un selector. O bien creándolo directamente desde el código javascript.</p>
 <p>Primero un ejemplo de un enlace definido en html:</p>
@@ -366,3 +366,62 @@ alert(body.outerHTML);
 &lt;/html&gt;
 </code></pre>
 <p>También hay eventos como click, load, error, ....</p>
+
+
+<script>
+const clickAsLink = (selec, id) => {
+  document.querySelector(selec).addEventListener("click", e => {
+    e.preventDefault();
+    const newLink = document.createElement("a");
+    newLink.href = id;
+    newLink.click();
+  });
+}
+
+clickAsLink("#vistazoSuperficialLink", "#vistazoSuperficial");
+clickAsLink("#primerosPasosLink", "#primerosPasos");
+clickAsLink("#introduccionDomLink", "#introduccionDom");
+
+</script>
+
+<style>
+#vistazoSuperficialLink, #primerosPasosLink, #introduccionDomLink {
+  color: "#ff7357";
+}
+
+html {
+  text-rendering: optimizeLegibility;
+}
+
+mark #markCommand {
+  background-color: #111;
+  color: #eee;
+}
+
+code {
+  display: block;
+  color: #ccc;
+  font-family: "Courier New", monospace;
+  white-space: pre;
+  overflow: auto;
+  margin-bottom: 8px;
+  padding: 3px;
+  opacity: 0.9;
+  color: #f75;
+  text-shadow: -1px 1px 0 0 hsl(20, 100%, 16%),
+    -2px 2px 0 0 hsl(20, 100%, 16%),
+    -3px 3px 0 0 hsl(20, 100%, 16%),
+    -4px 4px 0 0 hsl(20, 100%, 16%),
+    -5px 5px 0 0 hsl(20, 100%, 16%),
+    -6px 6px 0 0 hsl(20, 100%, 16%);
+}
+
+code .inline {
+  display: inline;
+}
+
+code .output {
+  background-color: #111;
+  color: #eee;
+}
+</style>

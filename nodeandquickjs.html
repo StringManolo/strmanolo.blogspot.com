@@ -1,4 +1,11 @@
+<head>
+  <meta name="theme-color" content="#ff8866">
+</head>
+
 <h1>Node y Quickjs para aplicaciones CLI</h1>
+
+<nav>This article is also available in <a href="https://strmanolo.blogspot.com/2021/03/node-quickjs-for-cli-develooment.html">english</a>.</nav>
+
 <p>Node y Quickjs son 2 de los entornos de ejecución más populares para correr nuestro código javascript. En este artículo explico como programar código portable entre ambos entornos y cual te beneficia utilizar para según el tipo de programa que desarrolles sin dejar de perder las posibilidades de correrlo en el otro entorno.</p>
 
 <h2>Vision General</h2>
@@ -147,7 +154,7 @@ real    0m0.028s
 user    0m0.012s
 sys     0m0.012s</code>
 
-<code class="output">$ time charcounter.js -f charcounter.js -l -n -s -t
+<code class="output">$ time node charcounter.js -f charcounter.js -l -n -s -t
 1064
 9
 1004
@@ -164,6 +171,10 @@ Si compilaste el código de quickjs  puedes usar qjsc para compilar el programa 
 
 
 <style>
+html {
+  text-rendering: optimizeLegibility;
+}
+
 mark #markCommand {
   background-color: #111;
   color: #eee;
@@ -177,8 +188,8 @@ code {
   overflow: auto;
   margin-bottom: 8px;
   padding: 3px;
-  background-color: #ff7357;
-  color: #000;
+  opacity: 0.9; 
+  color: #f75;
   text-shadow: -1px 1px 0 0 hsl(20, 100%, 16%),
     -2px 2px 0 0 hsl(20, 100%, 16%),
     -3px 3px 0 0 hsl(20, 100%, 16%),

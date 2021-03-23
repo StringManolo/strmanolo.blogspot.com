@@ -1,0 +1,334 @@
+<h1 id="iniciaci-n-javascript">Iniciación Javascript</h1>
+<h2 id="indice-">Indice:</h2>
+<ul>
+<li><h3 id="0-un-vistazo-superficial-">0. Un vistazo superficial.</h3>
+</li>
+<li><h3 id="1-primeros-pasos-">1. Primeros Pasos.</h3>
+</li>
+<li><h3 id="2-introducci-n-al-dom-">2. Introducción al DOM.</h3>
+</li>
+</ul>
+<h2 id="cap-tulo-0-un-vistazo-superficial-">Capítulo 0. Un vistazo superficial.</h2>
+<h3 id="qu-es-">Qué es?</h3>
+<p>  Es un lenguaje de programación de propósito general. Esto significa que puede usarse en programas para móvil, programas de windows, drones, sistemas aeroespaciales, parquímetros, sistemas de contabilidad... Pero donde cobra mayor trascendencia es en la web. Originalmente en páginas web, pero también en el lado del servidor.</p>
+<h3 id="para-qu-sirve-">Para qué sirve?</h3>
+<p>  Para hacer cualquier tipo de programa. Sobre todo haciendo funcionar las páginas web, donde html se usa para definir el contenido, css modifica y estiliza la apariencia y javascript se ocupa de &quot;lo que hace&quot; la web. Desde mostrar algo al pulsar un botón, hasta descargarse una web entera, obtener algo que nos interesa de ella, almacenarlo, mostrarlo, enviarlo...</p>
+<h3 id="qu-conocimientos-necesito-">Qué conocimientos necesito?</h3>
+<p>  Ninguno. Se usará html mínimo para crear un documento e indicar donde está el código con javascript.</p>
+<h2 id="programaci-n-general-">Programación General.</h2>
+<p>  Javascript y la mayoría de lenguajes de uso actual utilizan varios elementos que suelen ser comunes entre ellos:</p>
+<ul>
+<li>Expresiones o sentencias.</li>
+<li>Variables.</li>
+<li>Operadores.</li>
+<li>Condicionales.</li>
+<li>Bucles.</li>
+<li>Metodos y Funciones.</li>
+<li>Arrays.</li>
+<li>Objetos.</li>
+</ul>
+<p><em>Nota</em>: A continuación un resumen de que es cada cosa. No te preocupes si no lo entiendes todo ahora mismo o es demasiada información nueva o abstracta. Vas a ver ejemplos detallados de su uso que facilitaran asimilar los conceptos. </p>
+<h6 id="expresiones-o-sentencias-">Expresiones o sentencias:</h6>
+<p>  Son lineas de código que sirven para expresar una acción o un contenido. Por ejemplo <em>1 + 3;</em> es una expresión que suma dos números. El punto y coma sirve para indicar el final de una expresión. </p>
+<h6 id="variables-">Variables:</h6>
+<p>  Son contenedores para guardar algo que vamos a querer utilizar más tarde. Por ejemplo <em>var resultado = 1 + 3;</em> nos almacenará 4 dentro de una variable a la que pusimos de nombre resultado. Hay distintos tipos de datos y contenedores.</p>
+<h6 id="operadores-">Operadores:</h6>
+<p>  Sirven para realizar operaciones de todo tipo. Tenemos los operadores matemáticos básicos pero también tenemos algunos otros útiles como el menor o igual que <em>&lt;=</em> el de asignación <em>=</em> o el de comparación <em>==</em> entre otros muchos.</p>
+<h6 id="condicionales-">Condicionales:</h6>
+<p>  Sirven para realizar una acción cuando se cumpla la condición que le indiquemos. Ejemplo <em>if (resultado == 4)</em> se cumplirá si la variable resultado es igual a 4. Lo veremos en más detalle.</p>
+<h6 id="bucles-">Bucles:</h6>
+<p>  Sirven para poder realizar una acción en bucle, es decir, de forma repetida hasta alcanzar el resultado deseado. Ejemplo <em>while (resultado == 4)</em> se repetira en bucle la expresión que le indiquemos entre corchetes mientras la variable resultado sea igual a 4.</p>
+<h6 id="metodos-y-funciones-">Metodos y Funciones:</h6>
+<p>  Los métodos y las funciones se utilizan para agrupar código designado para una tarea. Por ejemplo podemos agrupar un programa entero que haga la declaración de la renta y otro que mustre los datos de diversas empresas. De esta forma podremos llamar a todo el código para hacer la declaración de la renta de una forma sencilla sin tener que rescribirlo de cero cada vez que queramos hacer la declaración a una persona distinta. Al final nos quedara una función que podremos usar tal que: <em>hacerDeclaración(&quot;Paco&quot;);</em> <em>hacerDeclaración(&quot;Antonio&quot;);</em> ... Los métodos son prácticamente iguales.</p>
+<h6 id="arrays-">Arrays:</h6>
+<p>  Los arrays son contenedores al igual que las variables, pero nos permiten almacenar varios datos y también variables. Ejemplo: <em>var colores = [&quot;rojo&quot;, &quot;verde&quot;, &quot;azul&quot;];</em>
+  Para acceder a ellos usaremos índices que empiezan a contar desde 0. Por ejemplo si quiero mostrar la palabra rojo:
+  <em>alert(colores[0]);</em></p>
+<h6 id="objetos-">Objetos:</h6>
+<p>  Los objetos son agrupaciones de datos o funciones que están relacionados de alguna forma. Por ejemplo podemos hacer un objeto persona que va a tener variables como nombre, altura, edad... Y métodos como hablar, caminar, comer...</p>
+<h2 id="cap-tulo-1-primeros-pasos-">Capítulo 1. Primeros Pasos.</h2>
+<h4 id="creando-el-documento-">Creando el documento:</h4>
+<p>  Antes de empezar a programar en javascript necesitas un documento HTML para indicarle al navegador que vamos a usar javascript:</p>
+<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="undefined">
+
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre><p>Solo son 3 etiquetas html. Dentro de las etiquetas script vas a escribir el código javascript que quieras. Si quieres utilizar acentos y caracteteres especiales debes añadir las etiquetas head y meta charset. Por lo general puedes usar el ejemplo anterior, o si lo prefieres añadir más datos quedando:</p>
+<pre><code><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Título de la pestaña<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+Este texto lo veras en el documento.
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="undefined">
+
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre><p>Este código HTML debes escribirlo y guardarlo en un archivo con cualquier editor de texto. Por ejemplo el notepad o bloc de notas de windows. Guárdalo como NombreDeMiDocumento.html </p>
+<p>Vamos a trabajar en este archivo que abriremos en el navegador para ver los resultados. De momento no hace nada. Si ponemos 1 + 3; hará la suma, pero no veremos el resultado porque no se lo indicamos. 
+Existen multitud de formas de ver los resultados, nosotros veremos la más básica de todas, la función alert. </p>
+<h3 id="conociendo-alert">Conociendo alert</h3>
+<p>alert es una función (que ya viene definida en el navegador) que muestra una ventana pequeña en pantalla con el valor que le indiquemos.</p>
+<p>Vamos a utilizar alert para mostrar el resultado de la suma:</p>
+<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="undefined">
+alert(1 + 3);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre><p>Asegúrate de guardar los cambios y abre el archivo con extensión tuArchivo.html en el navegador. Para ello puedes hacer click derecho y seleccionar abrir con ... Ahí deberás elegir Chrome, Mozilla, Edge, Internet Explorer, Safari, Opera... El explorador que tú tengas. Debes ver una ventana que muestre el número 4. Si no es así repite el proceso y asegúrate que todo está correcto.</p>
+<p>A parte de realizar operaciones también puedes mostrar texto si lo encierras entre comillas. Ejemplo:</p>
+<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">
+alert(<span class="hljs-string">"Bienvenido a mi primer programa con javascript"</span>);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre><h3 id="trabajando-con-variables-">Trabajando con variables.</h3>
+<p>También puedes guardar el resultado de la operación o el texto en una variable y mostrarlo desde el alert.</p>
+<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">
+<span class="hljs-keyword">var</span> resultado = <span class="hljs-number">4</span>;
+<span class="hljs-keyword">var</span> saludo = <span class="hljs-string">"bienvenido a mi primer programa"</span>;
+<span class="hljs-keyword">var</span> nombre = <span class="hljs-string">"Juan"</span>;
+alert(<span class="hljs-string">"Hola"</span>);
+alert(nombre);
+alert(saludo);
+alert(resultado);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre><p>Es un poco incómodo mostrar 4 alerts distintos y que el usuario necesite pulsar 4 veces en aceptar para leer todos nuestros mensajes. Hay secuencias de caracteres que tienen funcionalldad especial, como \n que nos permite hacer una <strong>n</strong>ueva línea. Y el operador <strong>+</strong> sirve también para unir texto, no solo para sumar números, asique podemos mostrarlo todo en un solo alert.</p>
+<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">
+<span class="hljs-keyword">var</span> resultado = <span class="hljs-number">4</span>;
+<span class="hljs-keyword">var</span> saludo = <span class="hljs-string">"bienvenido a mi primer programa"</span>;
+<span class="hljs-keyword">var</span> nombre = <span class="hljs-string">"Juan"</span>;
+alert(<span class="hljs-string">"Hola "</span> + nombre + <span class="hljs-string">" "</span> + saludo + <span class="hljs-string">".\n"</span> + <span class="hljs-string">"Ya no necesito utilizar "</span> + resultado + <span class="hljs-string">" alerts para mostrarte este texto"</span>);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre><p>Pruébalo, verás el siguiente texto:</p>
+<pre><code>Hola Juan bienvenido a mi primer programa.
+Ya no necesito utilizar <span class="hljs-number">4</span> alerts para mostrarte este texto.
+</code></pre><p>Probablemente nuestro usuario no se llame Juan. Hay otra función muy similar a alert llamada prompt que da al usuario la posibilidad de escribir algo en la ventana, y a nosotros de obtenerlo.</p>
+<p>Vamos a hacer un programa que pida el nombre, la edad y le dedique un saludo personalizado.</p>
+<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">
+<span class="hljs-keyword">var</span> saludo = <span class="hljs-string">"Hola "</span>;
+<span class="hljs-keyword">var</span> nombre = prompt(<span class="hljs-string">"Cual es tu nombre?"</span>);
+<span class="hljs-keyword">var</span> edad = prompt(<span class="hljs-string">"Cuantos años tienes?"</span>);
+alert(saludo + nombre + <span class="hljs-string">" tienes "</span> + edad + <span class="hljs-string">" años."</span>);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre><h3 id="los-condicionales-">Los condicionales.</h3>
+<p>Esto está genial! Pero a todos los saludamos igual. Vamos a usar los condicionales para personalizar más el saludo:
+<strong>A partir de ahora se asume que sabes que se debe poner el código en el documento entre las etiquetas y se omite por brevedad.</strong> </p>
+<pre><code><span class="hljs-built_in">var</span> nombre = <span class="hljs-built_in">prompt</span>(<span class="hljs-string">"Cual es tu nombre?"</span>);
+<span class="hljs-built_in">var</span> edad = <span class="hljs-built_in">prompt</span>(<span class="hljs-string">"Cuantos años tienes?"</span>);
+
+<span class="hljs-keyword">if</span>(edad &lt; <span class="hljs-number">18</span>) {
+  <span class="hljs-built_in">var</span> saludo = <span class="hljs-string">"Qué pasa "</span>;
+  <span class="hljs-built_in">var</span> postSaludo = <span class="hljs-string">" qué tal los estudios?"</span>;
+}
+
+<span class="hljs-keyword">if</span>(edad &gt;= <span class="hljs-number">18</span> &amp;&amp; edad &lt; <span class="hljs-number">65</span>) {
+  <span class="hljs-built_in">var</span> saludo = <span class="hljs-string">"Hola "</span>;
+  <span class="hljs-built_in">var</span> postSaludo = <span class="hljs-string">" qué tal la familia?"</span>;
+}
+
+<span class="hljs-keyword">if</span>(edad &gt;= <span class="hljs-number">65</span>) {
+  <span class="hljs-built_in">var</span> saludo = <span class="hljs-string">"Adelante "</span>;
+  <span class="hljs-built_in">var</span> postSaludo = <span class="hljs-string">" qué tal está usted?"</span>;
+}
+
+alert(saludo + nombre + postSaludo);
+</code></pre><p>El condicional if tiene una condición que va entre paréntesis y lo que queramos que pase si se cumple la condición va entre corchetes. También usamos el operador and <strong>&amp;&amp;</strong> que sirve para añadir más de una condición que se tiene que cumplir.</p>
+<p>Ahora vamos a hacer un programa que pida una contraseña, si se cumple la condición, es decir si se puso la contraseña correcta mostraremos un texto indicándolo, y en caso contrario mostraremos otro distinto.</p>
+<pre><code><span class="hljs-built_in">var</span> contraseña = <span class="hljs-string">"abc123"</span>;
+<span class="hljs-built_in">var</span> introducida = <span class="hljs-built_in">prompt</span>(<span class="hljs-string">"Adivina la contraseña"</span>);
+
+<span class="hljs-keyword">if</span> (contraseña == introducida) {
+  alert(<span class="hljs-string">"Enhorabuena, introduciste la contraseña correcta."</span>);
+} <span class="hljs-keyword">else</span> {
+  alert(<span class="hljs-string">"Ohh, fallaste!"</span>);
+}
+</code></pre><p>La palabra clave else sirve para poner código que se ejecute cuando no se cumpla la condición del if.</p>
+<p>Este programa tiene un problema, y es que si queremos que el usuario tenga 10 intentos, tendrá que abrir la página 10 veces  o tendremos que pegar 10 veces el código. No parece algo tan malo, pero y si le quisiésemos dar 1000 intentos? Sería una locura copiar y pegar tanto y el archivo ocuparía mucho espacio. Para evitar esto tenemos los bucles.</p>
+<h3 id="los-bucles-">Los bucles.</h3>
+<p>El bucle while se parece mucho al condicional if, pero en lugar de ejecutarse una vez, lo hace hasta que la condición se cumpla:</p>
+<pre><code><span class="hljs-built_in">var</span> contraseña = <span class="hljs-string">"abc123"</span>
+<span class="hljs-built_in">var</span> introducida = <span class="hljs-string">"aún no se pidió"</span>;
+
+<span class="hljs-keyword">while</span> (contraseña != introducida) {
+  introducida = <span class="hljs-built_in">prompt</span>(<span class="hljs-string">"Adivina la contraseña"</span>);
+}
+</code></pre><p>Aquí usamos el operador <strong>desigual a</strong> en la condición. Es decir mientras la contraseña sea desigual a la introducida, ejecuta el código entre corchetes. Como ves <strong>var</strong> solo es necesario utilizarlo para crear la variable, después se puede omitir.</p>
+<p>Otro bucle de uso muy amplio es el for, que se puede ver de varias formas. Solo vamos a ver la forma clásica que en lugar de utilizar un condicional usa 3 expresiones. Es común su uso para contar o hacer acciones un determinado número de veces:</p>
+<pre><code>for (<span class="hljs-name">var</span> contador = <span class="hljs-number">0</span><span class="hljs-comment">; contador &lt; 10; contador += 1) {</span>
+  alert(<span class="hljs-name">contador</span>)<span class="hljs-comment">;</span>
+}
+</code></pre><p>Como ves entre paréntesis hay 3 expresiones. La primera es para indicar la variable que se usará de contador. La segunda para indicar que condición se debe cumplir. La tercera para indicar cuanto debe aumentar o disminiur el contador.</p>
+<h3 id="funciones-y-m-todos-">Funciones y métodos.</h3>
+<p>Las funciones y métodos son de las herramientas más útiles. Hasta ahora usamos alert y prompt, 2 funciones que nos sirven para interactuar con el usuario de forma sencilla. Nosotros haremos una función que nos permita obtener múltiples datos de una persona y la utilizaremos en un bucle en base al número de personas que nos indique el usuario. Es decir, si el usuario quiere darnos los datos de 2 personas, de 8, etc, nosotros tomaremos los datos de todos ellos.
+Primero vamos a preguntarle al usuario:</p>
+<pre><code><span class="hljs-attribute">var miembrosUnidadFamiliar</span> = prompt(<span class="hljs-string">"Con cuantas personas convive en su domicilio?"</span>);
+</code></pre><p>El siguiente paso sería preguntarle los datos que queremos saber de cada miembro:</p>
+<pre><code><span class="hljs-attribute">var nombre</span> = prompt(<span class="hljs-string">"Introduzca el nombre de un miembro de su unidad familiar"</span>);
+<span class="hljs-attribute">var edad</span> = prompt(<span class="hljs-string">"Dígame la edad de "</span> + nombre);
+<span class="hljs-attribute">var sexo</span> = prompt(nombre + <span class="hljs-string">" es hombre o mujer?"</span>);
+<span class="hljs-attribute">var estadoCivil</span> = prompt(nombre + <span class="hljs-string">" está casado/a, soltero/a, viudo/a o divorciado/a"</span>);
+</code></pre><p>Ahora podemos meter todas estas preguntas en una sola función. Y de paso hacemos que la función nos retorne todo organizado:</p>
+<pre><code>function obtenerDatos() {
+  <span class="hljs-built_in">var</span> nombre = <span class="hljs-built_in">prompt</span>(<span class="hljs-string">"Introduzca el nombre de un miembro de su unidad familiar"</span>);
+  <span class="hljs-built_in">var</span> edad = <span class="hljs-built_in">prompt</span>(<span class="hljs-string">"Dígame la edad de "</span> + nombre);
+  <span class="hljs-built_in">var</span> sexo = <span class="hljs-built_in">prompt</span>(nombre + <span class="hljs-string">" es hombre o mujer?"</span>);
+  <span class="hljs-built_in">var</span> estadoCivil = <span class="hljs-built_in">prompt</span>(nombre + <span class="hljs-string">" está casado/a, soltero/a, viudo/a o divorciado/a"</span>);
+
+  <span class="hljs-built_in">return</span> <span class="hljs-string">"Nombre:"</span> + nombre + <span class="hljs-string">"\nEdad:"</span> + edad + <span class="hljs-string">"\nSexo:"</span> + sexo + <span class="hljs-string">"\nEstado Civil:"</span> + estadoCivil;
+}
+</code></pre><p>Ya tenemos definido lo que hace. Ahora podemos usarla siempre que queramos de la misma forma que un prompt. Solo nos falta el bucle para acabar el programa, quedando tal que:</p>
+<pre><code><span class="hljs-built_in">var</span> miembrosUnidadFamiliar = <span class="hljs-built_in">prompt</span>(<span class="hljs-string">"Con cuantas personas convive en su domicilio?"</span>);
+
+<span class="hljs-keyword">for</span> (<span class="hljs-built_in">var</span> contador = <span class="hljs-number">0</span>; contador &lt; miembrosUnidadFamiliar; ++contador) {
+  <span class="hljs-built_in">var</span> datosDeFamiliar = obtenerDatos();
+  alert(datosDeFamiliar);
+}
+
+
+function obtenerDatos() {
+  <span class="hljs-built_in">var</span> nombre = <span class="hljs-built_in">prompt</span>(<span class="hljs-string">"Introduzca el nombre de un miembro de su unidad familiar"</span>);
+  <span class="hljs-built_in">var</span> edad = <span class="hljs-built_in">prompt</span>(<span class="hljs-string">"Dígame la edad de "</span> + nombre);
+  <span class="hljs-built_in">var</span> sexo = <span class="hljs-built_in">prompt</span>(nombre + <span class="hljs-string">" es hombre o mujer?"</span>);
+  <span class="hljs-built_in">var</span> estadoCivil = <span class="hljs-built_in">prompt</span>(nombre + <span class="hljs-string">" está casado/a, soltero/a, viudo/a o divorciado/a"</span>);
+
+  <span class="hljs-built_in">return</span> <span class="hljs-string">"Nombre:"</span> + nombre + <span class="hljs-string">"\nEdad:"</span> + edad + <span class="hljs-string">"\nSexo:"</span> + sexo + <span class="hljs-string">"\nEstado Civil:"</span> + estadoCivil;
+}
+</code></pre><p>A lo largo del tiempo podríamos hacer funciones y almacenarlas en un archivo para poder utilizarlas sin tener que crearlas de nuevo de la misma forma que prompt y alert.</p>
+<h3 id="arrays-">Arrays.</h3>
+<p>  En lugar de retornar la cadena de texto, nos puede ser de interes separar los datos para acceder a ellos de forma individual:</p>
+<pre><code><span class="hljs-attribute">var datosDeFamiliar</span> = [nombre, edad, sexo, estadoCivil];
+</code></pre><p>Así nos es posible tener todos los datos en un solo lugar y a la vez poder acceder a ellos individualmente:</p>
+<pre><code>alert(datosDeFamiliar);
+alert(<span class="hljs-string">"Hola "</span> + datosDeFamiliar<span class="hljs-string">[0]</span> + <span class="hljs-string">" estás "</span> + datosDeFamiliar<span class="hljs-string">[3]</span> + <span class="hljs-string">" eres "</span> + datosDeFamiliar<span class="hljs-string">[2]</span> + <span class="hljs-string">" y tienes "</span> + datosDeFamiliar<span class="hljs-string">[1]</span> + <span class="hljs-string">" años."</span>);
+</code></pre><h3 id="m-todos-">Métodos.</h3>
+<p>Qué pasa si queremos mostrar solo la inicial del nombre? Para ello javascript al igual que con alert y prompt, nos da un método llamado <em>substr</em> cuya finalidad es a partir de un texto formar otro. Por ejemplo a partir del nombre Paco podremos obtener la P. Los métodos tienen una diferencia con las funciones, y es que estos son específicos de un objeto. Esto significa que no podemos crear un subtexto de un número, porque como es obvio un número no es un texto. Como ya vimos en ejemplos anteriores, el texto va entre comillas, mientras que los números no.
+Veamos un ejemplo del método substr:</p>
+<pre><code>var nombre = <span class="hljs-string">"paco"</span><span class="hljs-comment">;</span>
+var inicial = nombre.<span class="hljs-keyword">substr(0, </span><span class="hljs-number">1</span>)<span class="hljs-comment">;</span>
+alert(inicial)<span class="hljs-comment">;</span>
+</code></pre><p>En este caso substr acepta 2 números separados por comas. El primero nos permite seleccionar la posición desde la que empezar a obtener caracteres. El segundo número nos permite indicar cuantos caracteres vamos a obtener a partir de la posición que indicamos. En el ejemplo a partir de la letra 0, obtendremos 1 letra. Es decir de <em>paco</em> obtendremos la <em>p</em>. Si quisiesemos obtener <em>ac</em> haríamos <em>var letrasCentrales = nombre.substr(1, 2);</em> es decir, desde el caracter <em>a</em> obtenemos 2 letras. </p>
+<p>Hay muchos métodos predefinidos en javascript y se pueden encadenar. Por ejemplo si queremos mostrar la inicial de un nombre en mayúsculas podremos usar <em>substr(0, 1)</em> y <em>toUpperCase()</em> ejemplo:</p>
+<pre><code><span class="hljs-built_in">var</span> nombre = <span class="hljs-built_in">prompt</span>(<span class="hljs-string">"Cómo te llamas?"</span>):
+<span class="hljs-built_in">var</span> inicial = nombre.substr(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>);
+<span class="hljs-built_in">var</span> inicialEnMayuscula = inicial.toUpperCase();
+alert(inicialEnMayuscula);
+</code></pre><p>También podemos encadenar métodos en una sola línea:</p>
+<pre><code>var nombre = prompt(<span class="hljs-string">"Cómo te llamas?"</span>)<span class="hljs-comment">;</span>
+var inicialEnMayuscula = nombre.<span class="hljs-keyword">substr(0, </span><span class="hljs-number">1</span>).toUpperCase()<span class="hljs-comment">;</span>
+alert(inicialEnMayuscula)<span class="hljs-comment">;</span>
+</code></pre><p>Esto es posible debido a que javascript va evaluando las expresiones de izquierda a derecha remplazándolas por su resultado. Qué signifca esto? Significa que podemos simplificar mucho el código agrupando la funcionalidad en una sola linea, de tal forma que el ejemplo anterior también lo podemos hacer tal que:</p>
+<pre><code>alert(<span class="hljs-name">prompt</span>(<span class="hljs-string">"Cómo te llamas?"</span>).substr(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>).toUpperCase())<span class="hljs-comment">;</span>
+</code></pre><p>El navegador hará lo siguiente:
+  Hay paréntesis? Entonces evaluo lo que hay dentro:</p>
+<p>  Encuentro <em>prompt(&quot;Cómo te llamas?&quot;)</em> ejecuto la función y la remplazo por el resultado quedando el código tal que:
+  <em>alert(&quot;paco&quot;.substr(0, 1).toUpperCase());</em></p>
+<p>  Hay paréntesis? Entonces evaluo lo que hay dentro:</p>
+<p>  Encuentro <em>&quot;paco&quot;.substr(0, 1)</em> ejecuto el método y lo remplazo por el resultado quedando el código tal que:
+  <em>alert(&quot;p&quot;.toUpperCase());</em></p>
+<p>  Hay paréntesis? Entonces evaluo lo que hay dentro:</p>
+<p>  Encuentro <em>&quot;p&quot;.toUpperCase()</em> ejecuto el método y lo remplazo por el resultado quedando el código tal que:
+  <em>alert(&quot;P&quot;);</em></p>
+<p>  Como se puede apreciar ya no quedan expresiones que evaluar, asique el navegador pasará a hacer alert de &quot;P&quot;.</p>
+<h3 id="objetos-">Objetos.</h3>
+<p>  Todo lo que hemos usado hasta ahora son objetos. Un objeto no es más que un contenedor en el que podemos guardar variables y funciones. Cuando una variable o una función pertenece a un objeto, nos referiremos a ellas como propiedades y métodos.
+Los objetos de momento los veremos como una forma sencilla de agrupar variables y funciones que tengan que ver entre sí. Para crear un objeto usaremos:</p>
+<pre><code><span class="hljs-attribute">var vehiculo</span> = {};
+</code></pre><p>Para añadir una variable(propiedad) usaramos el operador <em>.</em> que ya vimos:</p>
+<pre><code>vehiculo.velocidadActual = <span class="hljs-number">0</span><span class="hljs-comment">;</span>
+</code></pre><p>Para añadir una función(método) también usaremos el mismo operador, pero asignaremos una función sin nombre:</p>
+<pre><code>vehiculo.acelerar = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+  vehiculo.velocidadActual += <span class="hljs-number">1</span>;
+};
+</code></pre><h2 id="cap-tulo-2-introducci-n-al-dom-">Capítulo 2. Introducción al DOM.</h2>
+<p>El Document Object Model es un objeto de javascript incluido en los navegadores. Este objeto <em>document</em> nos permite crear elementos como texto, imágenes, botones, hypervínculos, añadirlos al documento actual, obtenerlos, eliminarlos, escuchar eventos...  </p>
+<p>Principalmente hay 2 formas de obtener un elemento. Definiéndolo con código html y obteniendolo usando un selector. O bien creándolo directamente desde el código javascript.  </p>
+<p>Primero un ejemplo de un enlace definido en html:</p>
+<pre><code><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Ejemplo de un hypervínculo<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://google.com/search?q=Tutoriales de HTML"</span>&gt;</span>Tutoriales de HTML en Google<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="undefined">
+
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre><p>El resultado es un link tal que <a href="https://google.com/search?q=Tutoriales%20de%20HTML">Tutoriales de HTML en Google</a>. Es un elemento sencillo que nos permite ir a la página o elemento de la página deseado.</p>
+<p>Dentro del atributo href pondremos el destino. Entre las etiquetas pondremos el texto que se va a mostrar.</p>
+<p>Como puedes apreciar el elemento <em><a></em>  está entre las etiquetas body.
+Todo lo que pongas entre estas etiquetas excluyendo las etiquetas script y su contenido, será visible para el usuario.</p>
+<p>Estos elementos podremos obtenerlos en javascript para modificarlos y demás. Para facilitar su obtención, le vamos añadir el atributo <em>id</em> para poder identificarlo desde javascript:</p>
+<pre><code>...
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"vinculoAGoogle1"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://google.com/search?q=Tutoriales de HTML"</span>&gt;</span>Tutoriales de HTML en Google<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="undefined">
+
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre><p>Ahora podremos obtenerlo utilizando el <em>id</em> de 2 formas. Con el método obtener elemento por id:</p>
+<pre><code><span class="hljs-keyword">var</span> vinculo = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"vinculoAGoogle1"</span>);
+</code></pre><p>O mediante una selección por consulta:</p>
+<pre><code><span class="hljs-keyword">var</span> vinculo = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">"#vinculoAGoogle1"</span>);
+</code></pre><p>Yo recomiendo la segunda forma porque permite seleccionar también por el nombre de la etiqueta(omitiendo el <em>#</em>), por clase(usando un <em>.</em>), y por más atributos y selectores simplente cambiando el texto entre paréntesis. Por simplificar no es prioritario conocerlos todos ahora.</p>
+<p>La otra forma de crear un elemento es hacerlo desde javascript y añadirlo entre las etiquetas body:</p>
+<pre><code>...
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">var</span> vinculo = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">"a"</span>);
+vinculo.href = <span class="hljs-string">"https://google.com/search?q=Tutoriales de HTML"</span>;
+vinculo.innerText = <span class="hljs-string">"Tutoriales de HTML en Google"</span>
+
+<span class="hljs-keyword">var</span> body = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">"body"</span>);
+body.appendChild(vinculo);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre><p>Lo habitual es crear los elementos que conocemos de antemano con HTML y los que pueden variar o solo van a existir en casos remotos con javascript.</p>
+<p>Los elementos tienen múltiples atributos que podemos editar o leer desde javascript. Uno de los más interesantes a la hora de inspeccionar los elementos es outerHTML.</p>
+<p>Por ejemplo podremos ver como queda el body tras añadir el elemento creado desde javascript:</p>
+<pre><code><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Ejemplo de outterHTML<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">var</span> vinculo = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">"a"</span>);
+vinculo.href = <span class="hljs-string">"https://google.com/search?q=Tutoriales de HTML"</span>;
+vinculo.innerText = <span class="hljs-string">"Tutoriales de HTML en Google"</span>;
+
+<span class="hljs-keyword">var</span> body = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">"body"</span>);
+body.appendChild(vinculo);
+
+alert(body.outerHTML);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre><p>También hay eventos como click, load, error, ....</p>

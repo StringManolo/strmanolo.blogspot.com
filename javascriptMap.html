@@ -1,0 +1,143 @@
+<h1>Javascript map</h1>
+<p>A muchos programadores les cuesta entender o encontrar uso para el método <pre><code>.map()</code></pre> En este artículo vamos a programar el método, así podrás entender exactamente que es.</p>
+<h3>map</h3>
+<p>Para no ensuciar el array de javascript, vamos a crear una nueva versión del array extendiendo la clase.
+<pre><code>class CustomArray extends Array {
+  map() {
+    return "método custom";
+  }
+}</code></pre>
+
+Ahora tenemos 2 clases array iguales. La de javascript y la nuestra. La nuestra es casi igual que la de javascript, solo cambia el método map.<br />Puedes comprobar que funciona con el siguiente código <pre><code>class CustomArray extends Array {
+  map() {
+    return "método custom";
+  }
+}
+
+let numeros = new CustomArray(1, 2, 3); // Crea un array custom
+let numeros2 = [1, 2, 3]; // Crea un array normal
+
+numeros.map( num => num + 1); // "método custom"
+numeros2.map( num => num + 1); // 2, 3, 4 </code></pre>
+
+En la primera llamada a map (nuestro método custom) no pasa nada especial porque nuestro método no tiene definido que acepte ningún parámetro, asique se ejecuta el método sin más ignorando los parámetros.<br />
+En cambio en la segunda llamada a map (el .map() original de javascript) se toma la función como argumento y se le suma 1 a cada elemento del array. <br /><br />
+Una función que se pasa por parámetro a otra función/método (con intención de que se ejecute dentro de la función llamada se le conoce como callback.<br /><br />
+Vamos a hacer que nuestro método acepte una función y la llame: <pre><code>class CustomArray extends Array {
+  map(callback) { // acepta un parámetro cualquiera
+    return callback("método custom"); // llámalo pasándole el texto como argumento
+  }
+}
+
+let numeros = new CustomArray(1, 2, 3); // Crea un array custom
+let numeros2 = new Array(1, 2, 3); // Crea un array normal
+
+numeros.map( num => num + 1 ); // "método custom1"
+numeros2.map( num => num + 1 ); // 2, 3, 4</code></pre>
+
+Así añadimos el callback. Aceptamos que se pase una función como argumento de map, llamamos la función que se pasa usando nombreArgumento(); y le pasamos al argumento un argumento en la llamada tal que nombreArgumento("método custom");<br />
+Actualmente nuestro map solo añade 1 a nuestro texto, pero el objetivo es que sume 1 a todos los elementos del array. Para ello usaremos this para acceder al CustomArray y sus elementos: <pre><code>class CustomArray extends Array {
+  map(callback) {
+    return callback(this);
+  }
+}
+
+let numeros = new CustomArray(1, 2, 3);
+let numeros2 = new Array(1, 2, 3);
+
+numeros.map( num => num + 1 ); // "1, 2, 31"
+numeros2.map( num => num + 1 ); // 2 , 3, 4</code></pre>
+
+Al usar this como parámetro del callback accedemos al array y como no.se pueden sumar arrays y números, javascript opta por un tipo intermedio entre ambos que se pueda sumar, sumándose los strings "1, 2, 3" + "1". Lo que hace map es llamar a la función que le pasamos sobre cada elemento y nos retorna un array con los resultados. Asique acabamos el map con: <pre><code>class CustomArray extends Array {
+  map(callback) {
+    for (let i = 0; i < this.length; ++i) {
+      this[i] = callback(this[i])
+    }
+    return this;
+  }
+
+}
+
+let numeros = new CustomArray(1, 2, 3);
+let numeros2 = new Array(1, 2, 3);
+
+numeros.map( num => num + 1 ); //2, 3, 4
+numeros2.map( num => num + 1); //2, 3, 4</code></pre>
+Ya conseguimos crear nuestra versión del método map. Map es un método de los arrays, por lo que no puedes usarlo con otras clases como String.
+Puedes modificar el código para extender la clase String y añadirle el método map: <pre><code>class CustomString extends String {
+  map(callback) {
+    let aux = "";
+    for (let i = 0; i < this.length; ++i) {
+      aux += callback(this[i])
+    }
+    return aux;
+  }
+
+}
+
+const texto = new CustomString("hola");
+
+texto.map(letra => letra + 1) // "h1o1l1a1"</code></pre>
+
+Creo que queda claro que hace exactamente map. Aplica la funcion que le pasamos a cada elemento y nos retorna el resultado.<br />
+Es el mismo efecto que si hiciésemos:
+<pre><code>let arr = [1, 2, 3];
+let auxiliar = [];
+const suma1 = argumento => argumento + 1;
+
+auxiliar.push( suma1(arr[0]) );
+auxiliar.push( suma1(arr[1]) );
+auxiliar.push( suma1(arr[2]) );
+
+console.log(auxiliar) // 2, 3, 4</code></pre>
+</p>
+<h3>reduce</h3>
+<p>El método reduce es prácticamente igual que map, pero en lugar de devolver todos los elementos devuelve solo el resultado de operar con ellos. <pre><code>let numeros = [1, 2, 3];
+numeros.reduce( (res, num) => res + num); // 6</code></pre>
+El código también es muy similar al de map, trata de realizar tu propia implementación y jugar pásandole distintos parámetros. Recuerda que estos ejemplos son básicos. Los métodos map, reduce y similares son más completos que estas implementaciones, puedes consultar algunos polyfills para hacerte una idea más cercana a todo lo que hace cada método.</p>
+<h3>filter</h3>
+<p>Con filter en lugar de retornar el resultado, se retorna o no el elemento del array dependiendo de si la condición que indiques se cumple o no. Por ejemplo puedes filtrar los elementos de un array para obtener solo los números pares:
+<pre><code>let numeros = [1, 2, 3];
+numeros.filter( num => num % 2 == 0 ); // 2</code></pre>
+
+Recuerda que se retorna un nuevo array, el original no es modificado.
+
+<style>
+html {
+  text-rendering: optimizeLegibility;
+}
+
+mark #markCommand {
+  background-color: #111;
+  color: #eee;
+}
+
+code {
+  display: block;
+  color: #ccc;
+  font-family: "Courier New", monospace;
+  white-space: pre;
+  overflow: auto;
+  margin-bottom: 8px;
+  padding: 3px;
+  opacity: 0.9;
+  color: #f75;
+  text-shadow: -1px 1px 0 0 hsl(20, 100%, 16%),
+    -2px 2px 0 0 hsl(20, 100%, 16%),
+    -3px 3px 0 0 hsl(20, 100%, 16%),
+    -4px 4px 0 0 hsl(20, 100%, 16%),
+    -5px 5px 0 0 hsl(20, 100%, 16%),
+    -6px 6px 0 0 hsl(20, 100%, 16%);
+}
+
+code .inline {
+  display: inline;
+}
+
+code .output {
+  background-color: #111;
+  color: #eee;
+}
+</style>
+
+

@@ -1,0 +1,32 @@
+<h1>Lenguaje de Programación desde 0</h1>
+<p>Muchos tenemos ese deseo de crear nuestro lenguaje de programación propio. Muchas son las motivaciones, aprender, tener un lenguaje adecuado a nuestros gustos... Muchos lo intentamos pero a la hora de la verdad nos perdemos ante conceptos como lexers, parsers, contextos, ASTs, LLVM, bytecode, compiladores...<br /> El objetivo de este artículo es desmitificar y dar vida a un nuevo lenguaje sin perdernos en términos y complicaciones. También presentar una metodología nueva a la hora de abordar la creación de un nuevo lenguaje.<p>
+<h2>Fase 1. El diseño</h2>
+<p>Antes de escribir una sola linea de código, debemos tener claro que es exactamente lo que vamos a construir. Mi lenguaje se va a llamar "SIMPLE". La idea detrás de simple es crear un lenguaje de programación lo más simple posible. No con el objetivo de que sea más fácil de programar, si no que sea un lenguaje transpilable. Esto quiere decir que el código del lenguaje no va a ser interpretado o compilado, si no que va a ser traducido a múltiples lenguajes distintos. La idea principal es que a través de un lenguaje sencillo, se puedan generar los equivalentes en cualquier otro lenguaje de interes.</p>
+<p>El lenguaje va a tener:
+<ul>
+  <li>variables</li>
+  <li>valores</li>
+  <li>arrays</li>
+  <li>funciones</li>
+  <li>defines</li>
+</ul></p>
+<p>Elijo estas estructuras porque es lo mínimo necesario para tener un lenguaje totalmente completo. Si echas en falta operadores como suma, resta, etc, estos son funciones incluídas en el lenguaje.</p>
+<h4>Variables</h4>
+<p>Las variables van a ser siempre globales, menos en el caso de las definidas dentro de funciones, que tendrán solo alcance dentro de ellas.</p>
+<h4>Valores</h4>
+<p>Tendremos 2 tipos de valores, numéricos y textuales.
+Eso simplifica la generación de código en lenguajes en los que necesitas indicar los tipos.</p>
+<h4>Arrays</h4>
+<p>Los arrays son el único tipo de datos en SIMPLE.</p>
+<h4>Funciones</h4>
+<p>Las funciones son la estructura más importante del lenguaje. Nos serviran para realizar sumas, bucles, etc. El objetivo es que sean módulos fácilmente programables para aumentar la funcionalidad del lenguaje por cualquiera en cualquier momento.</p>
+<h4>Defines</h4>
+<p>Si alguna vez programaste en C o C++ igual conoces la directiva del prepocesador #define. Es una característica muy interesante para un lenguaje. El objetivo de añadirla es que SIMPLE sea un lenguaje totalmente moldeable de principio a fin. Por ejemplo si echas de menos utilizar el operador +, la idea tras define es que puedas definir + como una forma de llamar a la función de sumar.</p>
+...
+...
+...
+
+
+
+
+

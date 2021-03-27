@@ -1,0 +1,38 @@
+<h1>Programar APKs en Termux</h1>
+<p>Siempre he querido programar apks (el .exe de android) directamente en Android. Tras varias búsquedas a lo largo del tiempo encontré una forma de crear apks usando comandos. Tanto Java como Kotlin son lenguajes que no me entusiasman precisamente asique he desarrollado un script en javascript y un par de repos para poder construir la apk a partir de una url o una carpeta con archivos html, css, js y demás de tal forma que no tengas que tocar ni una sola linea de código de java, kotlin, xml, etc. No es nada complejo, solo tienes que correr 2 comandos.</p>
+<h2>Instalación</h2>
+<p>Mi script utiliza unos cuantos paquetes de Termux:
+<ul>
+  <li>Quickjs</li>
+  <li>Git</li>
+  <li>Aapt</li>
+  <li>Apksigner</li>
+  <li>Dx</li>
+  <li>Ecj</li>
+  <li>Curl</li>
+  <li>buildAPKs</li>
+</ul>
+<br />
+Hice un commando para que simplemente lo copies y pegues, te deja todo listo. Si acabas de descargarte termux, corre termux-setup-storage antes de nada. Si ya tenías acceso a la carpeta storage no hace falta.
+<br />
+<br />
+Aquí el comando: <pre><code>yes | pkg install quickjs git aapt apksigner dx ecj curl; curl -O https://raw.githubusercontent.com/BuildAPKs/buildAPKs/master/setup.buildAPKs.bash && yes | bash setup.buildAPKs.bash && cp ~/buildAPKs/scripts/bash/build/build.one.bash ~/../usr/bin/ && chmod +775 ~/../usr/bin/build.one.bash; git clone https://github.com/StringManolo/APKGenerator && cd APKGenerator</code></pre>
+La instalación va a crear un par de apks para comprobar que todo funciona. Si te pide permisos para poder levantar termux en segundo plano, te recomiendo aceptarlo ya que te puede ser útil en el futuro cuando hagas o corras algún programa que lo necesita. Cuando finalice la instalación ya podrás crear tu app de Android utilizando APKGenerator</p>
+<h2>Creando la apk</h2>
+<p>El método de creación es muy sencillo. Tienes 2 comandos para elegir la fuente que se utilizará para generar la app, desde una url o desde una carpeta con tu index.html, estilos.css, codigo.js, etc.<br/>
+Para crear desde una url, corre el comando <pre><code>qjs --std APKGenerator.js -u https://example.com -n com.example.miApp -t Example</code></pre>
+Para crear desde carpeta pon <pre><code>qjs --std APKGenerator.js -a myAssets -n com.example.miApp -t Example</code></pre>
+En este caso se usará la carpeta myAssets que ya se descargó con un index.html, un archivo css y uno javascript para que no tengas que crearlos a mano en caso de que vayas a programar una web de 0. El único requisito es que el archivo se llame index.html.</p>
+<p>La única diferencia entre ambos comandos es el primer agumento, que indica si usar una url o una carpeta.<br />
+<br />
+El argumento -n es el nombre del paquete. Es una convención usar un dominio si tienes uno. Esto sirve para que Android sepa diferenciar entre apps que se llamen igual. Puedes poner el nombre que quieras en caso de no tener un dominio.<br />
+<br />
+El argumento -t es el título de la app. Será el nombre que vea el usuario al instalar la app. 
+</p>
+<h3>Creando desde url</h3>
+<p>Cuando creas la apk desde una url, se crea un navegador sin barra de direcciones (webview) que va a visitar esa url al abrirla. Todas las peticiones realizadas por el webview incluyen la cabecera HTTP X-Request-With: nombre.del.paquete asique puedes utilizar esta información para servir una versión especial de tu sitio web cuando se te solicite al servidor la web con esta cabecera. Obviamente necesitas internet para que funciones la app. En futuras versiones añadiré caché al webview y un script para cachear tu sitio, así podrás cargar tu sitio web sin conexión a internet.</p>
+<h3>Creando desde carpeta</h3>
+<p>Cuando creas desde carpeta esta es añadida a la apk por lo que funciona totalmente offline. Tendrás que manejar tu las actualizaciones de la app para que el usuario pueda actualizar la web. También puedes añadir un script online a la web para encargarte de ello. Recomendado también que utilices la push notifications api de javascript si provees otra forma de actualizarla.</p>
+<h3>Cambiando archivos de la apk</h3>
+<p>Cuando realices cualquier tipo de cambio tendrás que generar una nueva apk. Para ello ve a la carpeta de tu proyecto por ejemplo com.example.miApp/src/main y corre el comando build.one.bash</p>
+<p>La apk generada se incluye en la carpeta del proyecto (para debug con herramientas si lo necesitas) y en la carpeta Download/builtAPKs para instalar/distribuir. Puedes visitar el repositorio del proyecto en github si desear ver el código, reportar algún fallo, solicitar alguna característica o contribuir en el proyecto. <a href="https://github.com/StringManolo/APKGenerator">APKGenerator</a></p>
